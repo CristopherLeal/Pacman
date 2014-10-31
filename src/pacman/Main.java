@@ -31,10 +31,12 @@ public class Main {
         SwingUtilities.invokeLater(r);
     
 //            Inteligencia i = new Inteligencia();
+//            
 //            System.out.println(i.posicao(1, 2));
-//            System.out.println(i.pacman().get("X")+" " +i.pacman().get("Y"));
+//            System.out.println(i.pacman().get("X")+" " +i.pacman().get("Y") + " " + i.pacman().get("Z"));
 //            System.out.println(i.right());
-//            System.out.println(i.pacman().get("X")+" " +i.pacman().get("Y"));
+//            System.out.println(i.left());
+//            System.out.println(i.pacman().get("X")+" " +i.pacman().get("Y") + " " + i.pacman().get("Z"));
        
      }
 }

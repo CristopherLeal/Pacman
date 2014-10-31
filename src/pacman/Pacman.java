@@ -43,8 +43,13 @@ public class Pacman extends Thread {
 
     // int pause = 200;
     public Pacman(int initialRow, int initialColumn, Maze startMaze, int lives) {
+        
         pacmanRow = initialRow;
         pacmanCol = initialColumn;
+        
+//        pacmanRow = Integer.parseInt(i.pacman().get("Y").toString());
+//        pacmanCol =Integer.parseInt(i.pacman().get("X").toString());
+        
         maze      = startMaze;
         livesLeft = lives;
         cells     = maze.getCells();

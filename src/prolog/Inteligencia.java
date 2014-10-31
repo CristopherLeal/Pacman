@@ -24,9 +24,10 @@ public class Inteligencia {
         
         Variable a = new Variable("X");
         Variable b = new Variable("Y");
+        Variable c = new Variable("Z");
         
         Query q2;
-        q2 = new Query("pacman", new Term[]{a,b});
+        q2 = new Query("pacman", new Term[]{a,b,c});
         
         Hashtable result = q2.oneSolution();
         return result;     
@@ -48,4 +49,21 @@ public class Inteligencia {
         return q2.hasSolution();
     }
     
+     public Boolean left()
+    {
+        Query q2 = new Query("left");
+        return q2.hasSolution();
+    }
+    
+    public Boolean up()
+    {
+        Query q2 = new Query("up");
+        return q2.hasSolution();
+    } 
+    
+    public Boolean down()
+    {
+        Query q2 = new Query("down");
+        return q2.hasSolution();
+    }
 }

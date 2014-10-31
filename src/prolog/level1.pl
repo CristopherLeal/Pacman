@@ -1,5 +1,5 @@
 :- dynamic pos/2.
-:- dynamic pacman/2.
+:- dynamic pacman/3.
 :- dynamic fruit/2.
 :- dynamic point/2.
 
@@ -534,7 +534,7 @@ fruit(8,35).
 fruit(19,2).
 fruit(19,43).
 
-pacman(1,2).
+pacman(1,2,dir).
 
 %% retorna os possiveis movimentos
 mov(X1,Y1,X2,Y2):-pos(X1,Y1), X2 is X1 , Y2 is Y1+1 ,pos(X2,Y2).
@@ -544,13 +544,13 @@ mov(X1,Y1,X2,Y2):-pos(X1,Y1), X2 is X1 -1 , Y2 is Y1 , pos(X2,Y2).
 
 
 %%	executa os movimentos
-right:-pacman(X1,Y1),pos(X1,Y1), X2 is X1+1 , Y2 is Y1 , pos(X2,Y2),retract(pacman(X1,Y1)),assert(pacman(X2,Y2)).
-left:-pacman(X1,Y1),pos(X1,Y1), X2 is X1-1 , Y2 is Y1 , pos(X2,Y2),retract(pacman(X1,Y1)),assert(pacman(X2,Y2)).
-up:-pacman(X1,Y1),pos(X1,Y1), X2 is X1 , Y2 is Y1-1 , pos(X2,Y2),retract(pacman(X1,Y1)),assert(pacman(X2,Y2)).
-down:-pacman(X1,Y1),pos(X1,Y1), X2 is X1 , Y2 is Y1+1 , pos(X2,Y2),retract(pacman(X1,Y1)),assert(pacman(X2,Y2)).
+right:-pacman(X1,Y1,Z1),pos(X1,Y1), X2 is X1+1 , Y2 is Y1 , pos(X2,Y2),retract(pacman(X1,Y1,Z1)),assert(pacman(X2,Y2,dir)).
+left:-pacman(X1,Y1,Z1),pos(X1,Y1), X2 is X1-1 , Y2 is Y1 , pos(X2,Y2),retract(pacman(X1,Y1,Z1)),assert(pacman(X2,Y2,esq)).
+up:-pacman(X1,Y1,Z1),pos(X1,Y1), X2 is X1 , Y2 is Y1-1 , pos(X2,Y2),retract(pacman(X1,Y1,Z1)),assert(pacman(X2,Y2,cima)).
+down:-pacman(X1,Y1,Z1),pos(X1,Y1), X2 is X1 , Y2 is Y1+1 , pos(X2,Y2),retract(pacman(X1,Y1,Z1)),assert(pacman(X2,Y2,baixo)).
 
 %%portais
-left:- pacman(X1,Y1),portal(pos(X1,Y1),pos(X2,Y2),esq),retract(pacman(X1,Y1)),assert(pacman(X2,Y2)).
-right:- pacman(X1,Y1),portal(pos(X1,Y1),pos(X2,Y2),dir),retract(pacman(X1,Y1)),assert(pacman(X2,Y2)).
+%%left:- pacman(X1,Y1,Z1),portal(pos(X1,Y1),pos(X2,Y2),esq),retract(pacman(X1,Y1,Z1)),assert(pacman(X2,Y2,esq)).
+%%right:- pacman(X1,Y1,Z1),portal(pos(X1,Y1),pos(X2,Y2),dir),retract(pacman(X1,Y1,Z1)),assert(pacman(X2,Y2,dir)).
 
-comeu:- pacman(X,Y),fruit(X,Y),retract(fruit(X,Y)).
+comeu:- pacman(X,Y,_),fruit(X,Y),retract(fruit(X,Y)).
