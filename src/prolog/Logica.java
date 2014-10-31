@@ -10,9 +10,9 @@ import java.util.*;
  *
  * @author cristopher
  */
-public class Inteligencia {
+public class Logica {
     
-    public Inteligencia()
+    public Logica()
     {
         Query q1 = new Query("consult", new Atom("src/prolog/level1.pl"));
         q1.hasSolution();
@@ -31,6 +31,22 @@ public class Inteligencia {
         
         Hashtable result = q2.oneSolution();
         return result;     
+    }
+    
+    public int pacmanX()
+    {
+        return java.lang.Integer.parseInt(pacman().get("X").toString());
+    }
+    
+    public int pacmanY()
+    {
+        return java.lang.Integer.parseInt(pacman().get("Y").toString());
+    }
+    
+    public char pacmanDir()
+    {
+         char c = pacman().get("Z").toString().charAt(0);
+         return c;
     }
     
     public Boolean posicao(int X,int Y)

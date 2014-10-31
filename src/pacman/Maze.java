@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.swing.JPanel;
-import prolog.Inteligencia;
+import prolog.Logica;
 
 /**
  * Represents the maze that appears on screen. Creates the maze data using a 2D
@@ -27,13 +27,16 @@ import prolog.Inteligencia;
  *
  */
 public final class Maze extends JPanel {
+    
+    Logica inte = new Logica();
+    
     final static int CELL                = 20;
     private final int      ghostInitialColumn  = 13;
     private final int      ghostInitialRow     = 21;
     private int      lives               = 1;
     private final String   map                 = "src/pacman/levels/level1.txt/";
-    private final int      pacmanInitialColumn = 7;
-    private final int      pacmanInitialRow    = 21;
+//    private final int      pacmanInitialColumn =  7;
+//    private final int      pacmanInitialRow    =  21;
     private final int      score               = 0;
     private final Ghost    blinky;
     private Cell[][] cells;
@@ -43,12 +46,12 @@ public final class Maze extends JPanel {
     private final Ghost    pinky;
     private int      tileHeight;
     private int      tileWidth;
-    Inteligencia i = new Inteligencia();
+   
 
     public Maze() {
         createCellArray(map);
         setPreferredSize(new Dimension(CELL * tileWidth, CELL * tileHeight));
-        pacman = new Pacman(pacmanInitialRow, pacmanInitialColumn, this, 3);
+        pacman = new Pacman(this, 3,inte);
         inky   = new Ghost(ghostInitialRow, ghostInitialColumn, this, "inky.png");
         blinky = new Ghost(ghostInitialRow + 3, ghostInitialColumn, this, "blinky.png");
         pinky  = new Ghost(ghostInitialRow, ghostInitialColumn + 3, this, "pinky.png");
