@@ -10,6 +10,7 @@ package pacman;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
+import prolog.Inteligencia;
 
 public class Pacman extends Thread {
     private static final String IMAGE_SOURCE     = "src/pacman/img/";
@@ -38,6 +39,7 @@ public class Pacman extends Thread {
     private int    pacmanRow, pacmanCol;
     private String score_string;
     Thread         thread;
+    Inteligencia i = new Inteligencia();
 
     // int pause = 200;
     public Pacman(int initialRow, int initialColumn, Maze startMaze, int lives) {
@@ -125,9 +127,9 @@ public class Pacman extends Thread {
      *
      */
     protected void moveRow(int x) {
-       // if (isCellNavigable(pacmanCol, pacmanRow + x)) {
+       if (isCellNavigable(pacmanCol, pacmanRow + x)) {
             pacmanRow = pacmanRow + x;
-       // }
+        }
     }
 
     /*
@@ -175,7 +177,7 @@ public class Pacman extends Thread {
             maze.repaint();
 
             try {
-                Thread.sleep(150);
+                Thread.sleep(135);
             } catch (InterruptedException e) {
                 System.err.println(e);
             }
@@ -219,8 +221,10 @@ public class Pacman extends Thread {
      *
      */
     public boolean isCellNavigable(int column, int row) {
-        return ((cells[column][row].getType() == 'o') || (cells[column][row].getType() == 'd')
-                || (cells[column][row].getType() == 'p'));
+//        return ((cells[column][row].getType() == 'o') || (cells[column][row].getType() == 'd')
+//                || (cells[column][row].getType() == 'p'));
+        
+        return i.posicao(column, row);
     }
 
     /*

@@ -1,5 +1,5 @@
 
-start:- consult('mapa1.pl').
+start:- consult('level1.pl').
 
 %% retorna os possiveis movimentos
 mov(X1,Y1,X2,Y2):-pos(X1,Y1), X2 is X1 , Y2 is Y1+1 ,pos(X2,Y2).

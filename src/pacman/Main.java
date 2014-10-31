@@ -7,6 +7,9 @@
 package pacman;
 
 import javax.swing.SwingUtilities;
+import jpl.Atom;
+import jpl.Query;
+import prolog.Inteligencia;
 
 /**
  *
@@ -26,5 +29,12 @@ public class Main {
             }
         };
         SwingUtilities.invokeLater(r);
-    }
+    
+//            Inteligencia i = new Inteligencia();
+//            System.out.println(i.posicao(1, 2));
+//            System.out.println(i.pacman().get("X")+" " +i.pacman().get("Y"));
+//            System.out.println(i.right());
+//            System.out.println(i.pacman().get("X")+" " +i.pacman().get("Y"));
+       
+     }
 }

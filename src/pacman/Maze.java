@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.swing.JPanel;
+import prolog.Inteligencia;
 
 /**
  * Represents the maze that appears on screen. Creates the maze data using a 2D
@@ -42,6 +43,7 @@ public final class Maze extends JPanel {
     private final Ghost    pinky;
     private int      tileHeight;
     private int      tileWidth;
+    Inteligencia i = new Inteligencia();
 
     public Maze() {
         createCellArray(map);
@@ -80,8 +82,8 @@ public final class Maze extends JPanel {
                     break;
 
                 case (KeyEvent.VK_KP_RIGHT) :
-                case (KeyEvent.VK_RIGHT) :
-                    pacman.setDirection('r');
+                case (KeyEvent.VK_RIGHT) : 
+                        pacman.setDirection('r');
 
                     break;
 
