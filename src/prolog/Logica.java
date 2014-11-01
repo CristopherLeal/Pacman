@@ -14,7 +14,7 @@ public class Logica {
     
     public Logica()
     {
-        Query q1 = new Query("consult", new Atom("src/prolog/level1.pl"));
+        Query q1 = new Query("consult", new Atom("src/prolog/level2.pl"));
         q1.hasSolution();
     }
     

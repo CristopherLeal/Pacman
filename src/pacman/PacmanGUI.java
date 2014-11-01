@@ -126,6 +126,8 @@ class PacmanGUI extends JFrame {
     }
 
     public static void newDisp() {
+        
+        
         gameDisp.setText("Score " + gameMaze.getScore() + " Lives " + gameMaze.getLives());
         gameDisp.repaint();
     }

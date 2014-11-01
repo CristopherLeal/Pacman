@@ -26,6 +26,7 @@ public class Ghost extends Thread {
     private Image               ghostPicIcon;
     private int                 ghostRow, ghostCol;
     Maze                        maze;
+    final int CELL=20;
 
     public Ghost(int initialRow, int initialColumn, Maze startMaze, String ghostGraphic) {
         ghostRow = initialRow;
@@ -38,7 +39,7 @@ public class Ghost extends Thread {
     }
 
     public void drawGhost(Graphics g) {
-        g.drawImage(ghostPicIcon, ghostRow * 20, ghostCol * 20, maze);
+        g.drawImage(ghostPicIcon, ghostRow * CELL, ghostCol * CELL, maze);
     }
 
     /*

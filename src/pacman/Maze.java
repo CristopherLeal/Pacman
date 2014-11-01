@@ -31,10 +31,10 @@ public final class Maze extends JPanel {
     Logica inte = new Logica();
     
     final static int CELL                = 20;
-    private final int      ghostInitialColumn  = 13;
-    private final int      ghostInitialRow     = 21;
+    private final int      ghostInitialColumn  =16;//= 13;
+    private final int      ghostInitialRow     =16;//= 21;
     private int      lives               = 1;
-    private final String   map                 = "src/pacman/levels/level1.txt/";
+    private final String   map                 = "src/pacman/levels/level2.txt/";
 //    private final int      pacmanInitialColumn =  7;
 //    private final int      pacmanInitialRow    =  21;
     private final int      score               = 0;

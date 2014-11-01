@@ -30,7 +30,11 @@ public class Main {
         };
         SwingUtilities.invokeLater(r);
     
-           
+//        Logica l = new Logica();
+//        System.out.println(l.pacmanX());
+//        System.out.println(l.pacmanY());
+//        System.out.println(l.pacmanDir());
+//        System.out.println(l.up());
        
      }
 }

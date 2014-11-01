@@ -21,6 +21,7 @@ import java.awt.geom.Ellipse2D;
 public class Cell {
     
     final int CELL = 20;
+    final int ESP = 6;
     protected char type;
     protected int x,y;
     
@@ -39,19 +40,19 @@ public class Cell {
         int yBase = 0;
         
         switch(type){
-            case 'e':
-                g.setColor(Color.WHITE);
-                g.fillRect(x*CELL, y*CELL + CELL/2 - 10, CELL, 3);
+            case 'h':
+                g.setColor(Color.green);
+                g.fillRect(x*CELL, y*CELL + CELL/2 -3, CELL, ESP);
                 
                 break;
             
-            case 'h':
-                g.setColor(Color.green);
-                g.fillRect(x * CELL, y * CELL + CELL / 2 - 1, CELL, 3);
+            case 'e':
+//                g.setColor(Color.white);
+//                g.fillRect(x * CELL, y * CELL + CELL / 2 - 1, CELL, ESP);
             
             case 'v':
                 g.setColor(Color.green);
-                g.fillRect(x * CELL + CELL / 2 - 1, y * CELL, 3, CELL);
+                g.fillRect(x * CELL + CELL / 2 - 3, y * CELL, ESP, CELL);
 
                 break;
                 
@@ -69,14 +70,14 @@ public class Cell {
 
             break;
 
-        case '3' :    // southeast corner
+        case '4' :    // southeast corner
             xBase = x * CELL - CELL / 2;
             yBase = y * CELL - CELL / 2;
             drawCorner(g, xBase, yBase);
 
             break;
 
-        case '4' :    // southwest corner
+        case '3' :    // southwest corner
             xBase = x * CELL + CELL / 2;
             yBase = y * CELL - CELL / 2;
             drawCorner(g, xBase, yBase);
@@ -118,7 +119,7 @@ public class Cell {
 
         Shape oval = new Ellipse2D.Double(xBase, yBase, CELL, CELL);
 
-        g2.setStroke(new BasicStroke(3));
+        g2.setStroke(new BasicStroke(ESP));
         g2.draw(oval);
         g2.setClip(oldClip);
     }

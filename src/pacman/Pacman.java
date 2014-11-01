@@ -42,6 +42,7 @@ public class Pacman extends Thread {
     int            totalPictures = 0;
     
     //Celudas do visual
+    final int CELL=20;
     Cell[][]       cells;
     int            livesLeft;
     
@@ -97,7 +98,7 @@ public class Pacman extends Thread {
                 current = 0;
             }
 
-            g.drawImage(pictureUp[current], getRow() * 20, getCol() * 20, 22, 22, maze);
+            g.drawImage(pictureUp[current], getRow() * CELL, getCol() * CELL, 22, 22, maze);
         }
 
         if (direction == 'd') {
@@ -105,7 +106,7 @@ public class Pacman extends Thread {
                 current = 0;
             }
 
-            g.drawImage(pictureDown[current], getRow() * 20, getCol() * 20, 22, 22, maze);
+            g.drawImage(pictureDown[current], getRow() * CELL, getCol() * CELL, 22, 22, maze);
         }
 
         if (direction == 'l') {
@@ -113,7 +114,7 @@ public class Pacman extends Thread {
                 current = 0;
             }
 
-            g.drawImage(pictureLeft[current], getRow() * 20, getCol() * 20, 22, 22, maze);
+            g.drawImage(pictureLeft[current], getRow() * CELL, getCol() * CELL, 22, 22, maze);
         }
 
         if (direction == 'r') {
@@ -121,7 +122,7 @@ public class Pacman extends Thread {
                 current = 0;
             }
 
-            g.drawImage(pictureRight[current], getRow() * 20, getCol() * 20, 22, 22, maze);
+            g.drawImage(pictureRight[current], getRow() * CELL, getCol() * CELL, 22, 22, maze);
         }
         
         
