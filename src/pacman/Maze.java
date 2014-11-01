@@ -28,7 +28,7 @@ import prolog.Logica;
  */
 public final class Maze extends JPanel {
     
-    Logica inte = new Logica();
+    Logica logica = new Logica();
     
     final static int CELL                = 20;
     private final int      ghostInitialColumn  =16;//= 13;
@@ -51,11 +51,11 @@ public final class Maze extends JPanel {
     public Maze() {
         createCellArray(map);
         setPreferredSize(new Dimension(CELL * tileWidth, CELL * tileHeight));
-        pacman = new Pacman(this, 3,inte);
-        inky   = new Ghost(ghostInitialRow, ghostInitialColumn, this, "inky.png");
-        blinky = new Ghost(ghostInitialRow + 3, ghostInitialColumn, this, "blinky.png");
-        pinky  = new Ghost(ghostInitialRow, ghostInitialColumn + 3, this, "pinky.png");
-        clyde  = new Ghost(ghostInitialRow + 3, ghostInitialColumn + 3, this, "clyde.png");
+        pacman = new Pacman(this, 3,logica);
+        inky   = new Ghost(ghostInitialRow, ghostInitialColumn, this, "inky.png",new Intel1(logica));
+        blinky = new Ghost(ghostInitialRow + 3, ghostInitialColumn, this, "blinky.png",new Intel1(logica));
+        pinky  = new Ghost(ghostInitialRow, ghostInitialColumn + 3, this, "pinky.png",new Intel1(logica));
+        clyde  = new Ghost(ghostInitialRow + 3, ghostInitialColumn + 3, this, "clyde.png",new Intel1(logica));
 
         // Start ghosts first
         inky.start();

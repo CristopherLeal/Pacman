@@ -27,8 +27,13 @@ public class Ghost extends Thread {
     private int                 ghostRow, ghostCol;
     Maze                        maze;
     final int CELL=20;
+    
+    Inteligencia intel;
 
-    public Ghost(int initialRow, int initialColumn, Maze startMaze, String ghostGraphic) {
+    public Ghost(int initialRow, int initialColumn, Maze startMaze, String ghostGraphic ,Inteligencia intel) {
+        
+        this.intel = intel;
+        
         ghostRow = initialRow;
         ghostCol = initialColumn;
         maze     = startMaze;
@@ -103,27 +108,31 @@ public class Ghost extends Thread {
             }
 
             // Move
-            switch (randGen.nextInt(4) + 1) {
-            case (1) :
-                moveCol(-1);
-
-                break;
-
-            case (2) :
-                moveCol(1);
-
-                break;
-
-            case (3) :
-                moveRow(-1);
-
-                break;
-
-            case (4) :
-                moveRow(1);
-
-                break;
-            }
+//            switch (randGen.nextInt(4) + 1) {
+//            case (1) :
+//                moveCol(-1);
+//
+//                break;
+//
+//            case (2) :
+//                moveCol(1);
+//
+//                break;
+//
+//            case (3) :
+//                moveRow(-1);
+//
+//                break;
+//
+//            case (4) :
+//                moveRow(1);
+//
+//                break;
+//            }
+            
+            intel.proximoMovimento();
+            ghostRow = intel.getX();
+            ghostCol = intel.getY();
 
             maze.repaint();
 
