@@ -126,7 +126,7 @@ public class Pacman extends Thread {
         }
         
         
-        //current++;
+        current++;
     }
 
     /*
@@ -134,7 +134,15 @@ public class Pacman extends Thread {
      *
      */
     protected int getRow() {
-        return logica.pacmanX();
+        try
+        {
+            return logica.pacmanX();
+        }
+        catch(Exception ex)
+        {
+            System.out.println("pacmanX:" +ex);
+            return 1;
+        }
     }
 
     /*
@@ -142,7 +150,15 @@ public class Pacman extends Thread {
      *
      */
     protected int getCol() {
+        try
+        {
         return logica.pacmanY();
+        }
+        catch(Exception ex)
+        {
+            System.out.println("pacmanY:"+ex);
+            return 1;
+        }
     }
 
     /*
@@ -204,7 +220,13 @@ public class Pacman extends Thread {
 
            direction = logica.pacmanDir();
             
+           
+
+           
             eatPellet(getCol(), getRow());
+         
+           
+           
             maze.checkCollision();
             maze.repaint();
 

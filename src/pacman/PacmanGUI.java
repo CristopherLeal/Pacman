@@ -51,6 +51,7 @@ class PacmanGUI extends JFrame {
 //              pacman.setRunning(true);
 //              pacman.setEnabled(true);
 //              pacman.startGame();
+                
                 startButton.setEnabled(false);
                 stopButton.setEnabled(true);
                 pauseButton.setEnabled(true);
@@ -128,7 +129,7 @@ class PacmanGUI extends JFrame {
     public static void newDisp() {
         
         
-        gameDisp.setText("Score " + gameMaze.getScore() + " Lives " + gameMaze.getLives());
-        gameDisp.repaint();
+      //  gameDisp.setText("Score " + gameMaze.getScore() + " Lives " + gameMaze.getLives());
+        //gameDisp.repaint();
     }
 }
