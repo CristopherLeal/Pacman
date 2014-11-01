@@ -5,7 +5,10 @@
  */
 package pacman;
 
+import java.util.ArrayList;
+import java.util.List;
 import prolog.Logica;
+import prolog.Position;
 
 /**
  *
@@ -15,31 +18,27 @@ public class Intel1 implements Inteligencia {
 
     private int x;
     private int y;
+    private int iter;
     Logica logica;
     
     //importante que todos tenham a mesma instancia da logica
     Intel1(Logica logica)
     {
         this.logica=logica;
-        x=1;
-        y=1;
+        x=2;
+        y=2;
+        iter=0;
     }
     
     @Override
     public void proximoMovimento() 
     {
-      if(x < 20)
-      {
-       x++;
-       y++;
-      }
-      else
-      {
-          x=1;
-          y=1;
-      }
+        List<Position> pos= logica.getPath();
+        x=pos.get(iter).getX();
+        y=pos.get(iter).getY();
+        iter++;
+      
     }
-
     @Override
     public int getX() {
         return x;

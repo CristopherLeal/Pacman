@@ -3,7 +3,6 @@
 :- dynamic fruit/2.
 
 
-
 pos(2,2).
 pos(3,2).
 pos(4,2).
@@ -334,3 +333,22 @@ left:- pacman(X1,Y1,Z1),portal(pos(X1,Y1),pos(X2,Y2),esq),retract(pacman(X1,Y1,Z
 right:- pacman(X1,Y1,Z1),portal(pos(X1,Y1),pos(X2,Y2),dir),retract(pacman(X1,Y1,Z1)),assert(pacman(X2,Y2,'r')).
 
 comeu:- pacman(X,Y,_),fruit(X,Y),retract(fruit(X,Y)).
+
+%inteligencia do fantasma 1
+
+
+
+member(X, [Y|T]) :- X = Y; member(X, T).
+
+
+solve(X1,Y1,X2,Y2,Solution):- search([],pos(X1,Y1), pos(X2,Y2), Solution).
+search(_,pos(X2,Y2),pos(X2,Y2),[pos(X2,Y2)|[]]).
+search(Path,pos(X1,Y1),pos(X2,Y2),[pos(X1,Y1)|Sol1]):-not(X1==X2),X is X1+1,not(member(pos(X,Y1),Path)),mov(X1,Y1,X,Y1),search([pos(X,Y1)|Path],pos(X,Y1),pos(X2,Y2), Sol1),!.
+search(Path,pos(X1,Y1),pos(X2,Y2),[pos(X1,Y1)|Sol1]):-not(X1==X2),X is X1-1,not(member(pos(X,Y1),Path)),mov(X1,Y1,X,Y1),search([pos(X,Y1)|Path],pos(X,Y1),pos(X2,Y2), Sol1),!.
+search(Path,pos(X1,Y1),pos(X2,Y2),[pos(X1,Y1)|Sol1]):-not(Y1==Y2),Y is Y1+1,not(member(pos(X1,Y),Path)),mov(X1,Y1,X1,Y),search([pos(X1,Y)|Path],pos(X1,Y),pos(X2,Y2), Sol1),!.
+search(Path,pos(X1,Y1),pos(X2,Y2),[pos(X1,Y1)|Sol1]):-not(Y1==Y2),Y is Y1-1,not(member(pos(X1,Y),Path)),mov(X1,Y1,X1,Y),search([pos(X1,Y)|Path],pos(X1,Y),pos(X2,Y2), Sol1),!.
+search(Path,pos(X1,Y1),pos(X2,Y2),[pos(X1,Y1)|Sol1]):-X1==X2,X is X1+1,not(member(pos(X,Y1),Path)),mov(X1,Y1,X,Y1),search([pos(X,Y1)|Path],pos(X,Y1),pos(X2,Y2), Sol1),!.
+search(Path,pos(X1,Y1),pos(X2,Y2),[pos(X1,Y1)|Sol1]):-X1==X2,X is X1-1,not(member(pos(X,Y1),Path)),mov(X1,Y1,X,Y1),search([pos(X,Y1)|Path],pos(X,Y1),pos(X2,Y2), Sol1),!.
+search(Path,pos(X1,Y1),pos(X2,Y2),[pos(X1,Y1)|Sol1]):-Y1==Y2,Y is Y1+1,not(member(pos(X1,Y),Path)),mov(X1,Y1,X1,Y),search([pos(X1,Y)|Path],pos(X1,Y),pos(X2,Y2), Sol1),!.
+search(Path,pos(X1,Y1),pos(X2,Y2),[pos(X1,Y1)|Sol1]):-Y1==Y2,Y is Y1-1,not(member(pos(X1,Y),Path)),mov(X1,Y1,X1,Y),search([pos(X1,Y)|Path],pos(X1,Y),pos(X2,Y2), Sol1),!.
+

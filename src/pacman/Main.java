@@ -27,10 +27,11 @@ public class Main {
             public void run() {
                 new PacmanGUI().startGUI();
             }
+            
         };
         SwingUtilities.invokeLater(r);
-    
-//        Logica l = new Logica();
+         
+        //        Logica l = new Logica();
 //        System.out.println(l.pacmanX());
 //        System.out.println(l.pacmanY());
 //        System.out.println(l.pacmanDir());
