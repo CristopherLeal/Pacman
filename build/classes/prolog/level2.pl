@@ -376,6 +376,7 @@ inky(1,1).
 pinky(1,1).
 
 
+
 % quando o pacman come o fantasma
 comerBlinky :- pacman(X,Y,_),blinky(X,Y),retract(blinky(X,Y)),assert(blinky(1,1)),retract(podeComerBlinky).
 comerClyde :- pacman(X,Y,_),clyde(X,Y),retract(clyde(X,Y)),assert(clyde(1,1)),retract(podeComerClyde).
