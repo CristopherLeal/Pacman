@@ -381,10 +381,10 @@ pinky(16,19).
 
 % executa os movimentos de cada fantasma
 
-rightBlinky:-blink(X1,Y1),pos(X1,Y1), X2 is X1+1 , Y2 is Y1 , pos(X2,Y2),retract(blink(X1,Y1)),assert(blink(X2,Y2)).
-leftBlink:-blink(X1,Y1),pos(X1,Y1), X2 is X1-1 , Y2 is Y1 , pos(X2,Y2),retract(blink(X1,Y1)),assert(blink(X2,Y2)).
-upBlink:-blink(X1,Y1),pos(X1,Y1), X2 is X1 , Y2 is Y1-1 , pos(X2,Y2),retract(blink(X1,Y1)),assert(blink(X2,Y2)).
-downBlink:-blink(X1,Y1),pos(X1,Y1), X2 is X1 , Y2 is Y1+1 , pos(X2,Y2),retract(blink(X1,Y1)),assert(blink(X2,Y2)).
+rightBlinky:-blinky(X1,Y1),pos(X1,Y1), X2 is X1+1 , Y2 is Y1 , pos(X2,Y2),retract(blinky(X1,Y1)),assert(blinky(X2,Y2)).
+leftBlinky:-blinky(X1,Y1),pos(X1,Y1), X2 is X1-1 , Y2 is Y1 , pos(X2,Y2),retract(blinky(X1,Y1)),assert(blinky(X2,Y2)).
+upBlinky:-blinky(X1,Y1),pos(X1,Y1), X2 is X1 , Y2 is Y1-1 , pos(X2,Y2),retract(blinky(X1,Y1)),assert(blinky(X2,Y2)).
+downBlinky:-blinky(X1,Y1),pos(X1,Y1), X2 is X1 , Y2 is Y1+1 , pos(X2,Y2),retract(blinky(X1,Y1)),assert(blinky(X2,Y2)).
 
 rightClyde:-clyde(X1,Y1),pos(X1,Y1), X2 is X1+1 , Y2 is Y1 , pos(X2,Y2),retract(clyde(X1,Y1)),assert(clyde(X2,Y2)).
 leftClyde:-clyde(X1,Y1),pos(X1,Y1), X2 is X1-1 , Y2 is Y1 , pos(X2,Y2),retract(clyde(X1,Y1)),assert(clyde(X2,Y2)).

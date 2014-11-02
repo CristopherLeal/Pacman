@@ -30,12 +30,16 @@ public class Ghost extends Thread {
     
     Inteligencia intel;
 
-    public Ghost(int initialRow, int initialColumn, Maze startMaze, String ghostGraphic ,Inteligencia intel) {
+    public Ghost(Maze startMaze, String ghostGraphic ,Inteligencia intel) {
         
         this.intel = intel;
         
-        ghostRow = initialRow;
-        ghostCol = initialColumn;
+//        ghostRow = initialRow;
+//        ghostCol = initialColumn;
+        
+        ghostRow = intel.getX();
+        ghostCol = intel.getY();
+        
         maze     = startMaze;
 
         // livesLeft = lives;
@@ -52,7 +56,7 @@ public class Ghost extends Thread {
      *
      */
     public int getRow() {
-        return ghostRow;
+        return intel.getX();
     }
 
     /*
@@ -60,7 +64,7 @@ public class Ghost extends Thread {
      *
      */
     public int getCol() {
-        return ghostCol;
+        return intel.getY();
     }
 
     /*
@@ -111,11 +115,11 @@ public class Ghost extends Thread {
             intel.proximoMovimento();
             ghostRow = intel.getX();
             ghostCol = intel.getY();
-
+            
             maze.repaint();
 
             try {
-                Thread.sleep(100);
+                Thread.sleep(200);
             } catch (InterruptedException e) {
                 System.err.println(e);
             }

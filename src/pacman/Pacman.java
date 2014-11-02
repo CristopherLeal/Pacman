@@ -200,22 +200,22 @@ public class Pacman extends Thread {
         while (isRunning) {
             if (direction == 'u') {
                 //moveCol(-1);
-               System.out.println(logica.up());
+                 logica.up();
             }
 
             if (direction == 'd') {
                 //moveCol(1);
-                System.out.println(logica.down());
+                logica.down();
             }
 
             if (direction == 'l') {
                 //moveRow(-1);
-                System.out.println(logica.left());
+                logica.left();
             }
 
             if (direction == 'r') {
                 //moveRow(1);
-                System.out.println(logica.right());
+                logica.right();
             }
 
            direction = logica.pacmanDir();

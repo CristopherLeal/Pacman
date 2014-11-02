@@ -123,7 +123,7 @@ public class Logica {
 
         Query q3 = new Query(intel, new Term[]{i1,j1,i2,j2,a});
         Hashtable result = q3.oneSolution();
-        System.out.println(result.get("X").toString());
+        result.get("X").toString();
         return result.get("X").toString();
     }
     public List<Position> getPath(int x, int y){
