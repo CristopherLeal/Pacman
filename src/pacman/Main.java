@@ -31,7 +31,7 @@ public class Main {
         };
         SwingUtilities.invokeLater(r);
          
-//        Logica l = new Logica();
+      //  Logica l = new Logica();
 //        List <Position> lista = l.movimentosPosiveis(2, 2);
 //        
 //        for(Position p : lista)
@@ -39,6 +39,9 @@ public class Main {
 //            System.out.println(p.getX()+","+ p.getY());
 //        }
         
+//        System.out.println(l.FantasmaX(3)+","+l.FantasmaY(3));
+//        System.out.println( l.rightFantasma(3));
+//         System.out.println(l.FantasmaX(3)+","+l.FantasmaY(3));
       
        
      }

@@ -25,8 +25,8 @@ public class IntelFraca implements Inteligencia
     public IntelFraca(Logica logica)
     {
         this.logica = logica;
-        x=2;
-        y=2;
+        x=logica.FantasmaX(3);
+        y=logica.FantasmaY(3);
         direcao = 'r';
     }
     
@@ -42,17 +42,20 @@ public class IntelFraca implements Inteligencia
 
     @Override
     public void proximoMovimento() {
-        List<Position> lista = logica.movimentosPosiveis(x, y); 
-        //Collections.shuffle(lista);
-        for(Position s:lista)
-        {
-            if(manterDirecao(s.getX(),s.getY()))
-            {
-               x=s.getX();
-               y=s.getY();
-                break;
-            }
-        }
+//        List<Position> lista = logica.movimentosPosiveis(x, y); 
+//        //Collections.shuffle(lista);
+//        for(Position s:lista)
+//        {
+//            if(manterDirecao(s.getX(),s.getY()))
+//            {
+//               x=s.getX();
+//               y=s.getY();
+//                break;
+//            }
+//        }
+        logica.rightFantasma(3);
+        x=logica.FantasmaX(3);
+        y=logica.FantasmaY(3);
     }
     
     boolean manterDirecao(int x1,int y1)

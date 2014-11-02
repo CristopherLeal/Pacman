@@ -115,7 +115,7 @@ public class Ghost extends Thread {
             maze.repaint();
 
             try {
-                Thread.sleep(70);
+                Thread.sleep(300);
             } catch (InterruptedException e) {
                 System.err.println(e);
             }
