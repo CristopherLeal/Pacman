@@ -28,17 +28,22 @@ public class Intel1 implements Inteligencia {
         x=2;
         y=2;
         iter=0;
+        pos= logica.getPath(2 , 2);
     }
     
     @Override
     public void proximoMovimento() 
     {
         
-         pos= logica.getPath(2 , 2);
-        
-        x=pos.get(iter).getX();
-        y=pos.get(iter).getY();
-        iter++;
+        if(iter<pos.size()){
+            x=pos.get(iter).getX();
+            y=pos.get(iter).getY();
+            iter++;
+        }
+        if(iter==pos.size()||iter>1){
+            iter=0;
+            pos=logica.getPath(x , y);
+        }
         
              
     }
