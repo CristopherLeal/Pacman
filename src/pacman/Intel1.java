@@ -31,6 +31,15 @@ public class Intel1 implements Inteligencia {
         pos= logica.getPath(2 , 2);
     }
     
+    Intel1(Logica logica,int X,int Y)
+    {
+        this.logica=logica;
+        x=X;
+        y=Y;
+        iter=0;
+        pos= logica.getPath(x , y);
+    }
+    
     @Override
     public void proximoMovimento() 
     {

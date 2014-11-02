@@ -52,8 +52,8 @@ public final class Maze extends JPanel {
         createCellArray(map);
         setPreferredSize(new Dimension(CELL * tileWidth, CELL * tileHeight));
         pacman = new Pacman(this, 3,logica);
-        inky   = new Ghost(ghostInitialRow, ghostInitialColumn, this, "inky.png",new Intel1(logica));
-        blinky = new Ghost(ghostInitialRow + 3, ghostInitialColumn, this, "blinky.png",new Intel1(logica));
+        inky   = new Ghost(ghostInitialRow, ghostInitialColumn, this, "inky.png",new Intel1(logica,27,28));
+        blinky = new Ghost(ghostInitialRow + 3, ghostInitialColumn, this, "blinky.png",new Intel1(logica,22,6));
         pinky  = new Ghost(ghostInitialRow, ghostInitialColumn + 3, this, "pinky.png",new Intel1(logica));
         clyde  = new Ghost(ghostInitialRow + 3, ghostInitialColumn + 3, this, "clyde.png",new Intel1(logica));
 

@@ -2,7 +2,7 @@
 :- dynamic pacman/3.
 :- dynamic fruit/2.
 
-
+%%posicoes que podem ser percorridas no labirinto
 pos(2,2).
 pos(3,2).
 pos(4,2).
@@ -301,18 +301,18 @@ pos(25,28).
 pos(26,28).
 pos(27,28).
 
+
+%%posicao onde existem portais
 portal(pos(1,14),pos(28,14),esq).
 portal(pos(28,14),pos(1,14),dir).
 
-
+%%posicoes onde existem frutas
 fruit(2,4).
 fruit(27,4).
 fruit(2,25).
 fruit(27,25).
 
 pacman(16,26,'u').
-
-
 
 
 %% retorna os possiveis movimentos

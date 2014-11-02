@@ -87,7 +87,8 @@ public class Logica {
         Query q2 = new Query("down");
         return q2.hasSolution();
     }
-     public String intelFant1(int x1, int y1, int x2, int y2)
+    
+    public String intelFant1(int x1, int y1, int x2, int y2)
     {   
         
         Variable a = new Variable("X");
@@ -101,6 +102,7 @@ public class Logica {
         System.out.println(result.get("X").toString());
         return result.get("X").toString();
     }
+    
     public List<Position> getPath(int x, int y){
         Pattern pattern= Pattern.compile("(\\d+)");
         List<Position> posList= new ArrayList<>();
