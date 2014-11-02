@@ -50,7 +50,7 @@ public class Intel1 implements Inteligencia {
             iter++;
         }
         //Para a inteligencia solvente, a atualizacao de 10 está boa
-        if(iter==pos.size()||iter>10){
+        if(iter==pos.size()||iter>14){
             iter=0;
             pos=logica.getPath(x , y);
         }
