@@ -96,7 +96,7 @@ public class Logica {
         jpl.Integer i2 = new jpl.Integer(x2);
         jpl.Integer j2 = new jpl.Integer(y2);
 
-        Query q3 = new Query("solve", new Term[]{i1,j1,i2,j2,a});
+        Query q3 = new Query("path", new Term[]{i1,j1,i2,j2,a});
         Hashtable result = q3.oneSolution();
         System.out.println(result.get("X").toString());
         return result.get("X").toString();
