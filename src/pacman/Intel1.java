@@ -19,8 +19,9 @@ public class Intel1 implements Inteligencia {
     private int x;
     private int y;
     private int iter;
-    private int codGhost=2;
-    Logica logica;
+    private int codGhost;
+    private int sleep;
+    private Logica logica;
     List<Position> pos;
     //importante que todos tenham a mesma instancia da logica
     Intel1(Logica logica,int codGhost)
@@ -31,7 +32,7 @@ public class Intel1 implements Inteligencia {
         y=logica.FantasmaY(codGhost);      
         iter=0;
         pos= logica.getPath(x , y);
-        
+        sleep = 130;
     }
     
 //    Intel1(Logica logica,int X,int Y)
@@ -92,12 +93,17 @@ public class Intel1 implements Inteligencia {
     }
     @Override
     public int getX() {
-        return logica.FantasmaX(codGhost);
+        return x;
     }
 
     @Override
     public int getY() {
-        return logica.FantasmaY(codGhost);
+        return y;
+    }
+
+    @Override
+    public int getSleep() {
+        return sleep;
     }
     
 }

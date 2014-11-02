@@ -20,7 +20,8 @@ public class IntelFraca implements Inteligencia {
     private int y;
     private int iter;
     private int codGhost;
-    Logica logica;
+    private Logica logica;
+    private int sleep;
     List<Position> pos;
     //importante que todos tenham a mesma instancia da logica
     IntelFraca(Logica logica,int codGhost)
@@ -30,6 +31,7 @@ public class IntelFraca implements Inteligencia {
         x=logica.FantasmaX(codGhost);
         y=logica.FantasmaY(codGhost);
         iter=0;
+        sleep = 300;
         pos= logica.getPath(x , y);
     }
     
@@ -97,6 +99,11 @@ public class IntelFraca implements Inteligencia {
     @Override
     public int getY() {
         return y;
+    }
+
+    @Override
+    public int getSleep() {
+       return sleep;
     }
     
 }
