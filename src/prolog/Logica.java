@@ -203,4 +203,88 @@ public class Logica {
                 return 0;
         }
     }
+  
+    public Boolean rightFantasma(int n){
+        Query q2;
+        
+        switch(n){
+            case 0:
+                q2 = new Query("rightBlinky");
+                return q2.hasSolution();
+            case 1:
+                q2 = new Query("rightClyde");
+                return q2.hasSolution();
+            case 2:
+                q2 = new Query("rightInky");
+                return q2.hasSolution();
+            case 3:
+                q2 = new Query("rightPinky");
+                return q2.hasSolution();
+            default:
+                    return false;
+        }
+    }
+    
+    public Boolean leftFantasma(int n){
+        Query q2;
+        
+        switch(n){
+            case 0:
+                q2 = new Query("leftBlinky");
+                return q2.hasSolution();
+            case 1:
+                q2 = new Query("leftClyde");
+                return q2.hasSolution();
+            case 2:
+                q2 = new Query("leftInky");
+                return q2.hasSolution();
+            case 3:
+                q2 = new Query("leftPinky");
+                return q2.hasSolution();
+            default:
+                    return false;
+        }
+    }
+    
+    public Boolean upFantasma(int n){
+        Query q2;
+        
+        switch(n){
+            case 0:
+                q2 = new Query("upBlinky");
+                return q2.hasSolution();
+            case 1:
+                q2 = new Query("upClyde");
+                return q2.hasSolution();
+            case 2:
+                q2 = new Query("upInky");
+                return q2.hasSolution();
+            case 3:
+                q2 = new Query("upPinky");
+                return q2.hasSolution();
+            default:
+                    return false;
+        }
+    }
+    
+    public Boolean downFantasma(int n){
+        Query q2;
+        
+        switch(n){
+            case 0:
+                q2 = new Query("downBlinky");
+                return q2.hasSolution();
+            case 1:
+                q2 = new Query("downClyde");
+                return q2.hasSolution();
+            case 2:
+                q2 = new Query("downInky");
+                return q2.hasSolution();
+            case 3:
+                q2 = new Query("downPinky");
+                return q2.hasSolution();
+            default:
+                    return false;
+        }
+    }
 }
