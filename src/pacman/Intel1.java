@@ -20,7 +20,7 @@ public class Intel1 implements Inteligencia {
     private int y;
     private int iter;
     Logica logica;
-    
+    List<Position> pos;
     //importante que todos tenham a mesma instancia da logica
     Intel1(Logica logica)
     {
@@ -33,11 +33,14 @@ public class Intel1 implements Inteligencia {
     @Override
     public void proximoMovimento() 
     {
-        List<Position> pos= logica.getPath();
+        
+         pos= logica.getPath(2 , 2);
+        
         x=pos.get(iter).getX();
         y=pos.get(iter).getY();
         iter++;
-      
+        
+             
     }
     @Override
     public int getX() {

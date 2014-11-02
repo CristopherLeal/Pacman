@@ -51,7 +51,7 @@ public class Ghost extends Thread {
      * Get the current row
      *
      */
-    protected int getRow() {
+    public int getRow() {
         return ghostRow;
     }
 
@@ -59,7 +59,7 @@ public class Ghost extends Thread {
      * Get the current column
      *
      */
-    protected int getCol() {
+    public int getCol() {
         return ghostCol;
     }
 
