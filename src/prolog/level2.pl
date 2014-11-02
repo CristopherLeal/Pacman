@@ -336,7 +336,6 @@ comeu:- pacman(X,Y,_),fruit(X,Y),retract(fruit(X,Y)).
 
 %inteligencia do fantasma 1
 
-
 solvente(X1,Y1,X2,Y2,Solution):- search([],pos(X1,Y1), pos(X2,Y2), Solution).
 search(_,pos(X2,Y2),pos(X2,Y2),[pos(X2,Y2)|[]]).
 search(Path,pos(X1,Y1),pos(X2,Y2),[pos(X1,Y1)|Sol1]):-Y1<Y2,Y is Y1+1,\+member(pos(X1,Y),Path),mov(X1,Y1,X1,Y),search([pos(X1,Y)|Path],pos(X1,Y),pos(X2,Y2), Sol1).
@@ -370,15 +369,36 @@ travel(pos(X1,Y1),pos(X2,Y2),Visited,Path) :- mov(X1,Y1,X,Y), pos(X,Y) \== pos(X
 %% movimento dos fantasmas
 
 % quando o jogo comeca ou fantasma morre
-blinky(1,1).
-clindy(1,1).
-inky(1,1).
-pinky(1,1).
+blinky(19,16).
+clyde(19,19).
+inky(16,16).
+pinky(16,19).
 
+% executa os movimentos de cada fantasma
+
+rightBlinky:-blink(X1,Y1),pos(X1,Y1), X2 is X1+1 , Y2 is Y1 , pos(X2,Y2),retract(blink(X1,Y1)),assert(blink(X1,Y1)).
+leftBlink:-blink(X1,Y1),pos(X1,Y1), X2 is X1-1 , Y2 is Y1 , pos(X2,Y2),retract(blink(X1,Y1)),assert(blink(X1,Y1)).
+upBlink:-blink(X1,Y1),pos(X1,Y1), X2 is X1 , Y2 is Y1-1 , pos(X2,Y2),retract(blink(X1,Y1)),assert(blink(X1,Y1)).
+downBlink:-blink(X1,Y1),pos(X1,Y1), X2 is X1 , Y2 is Y1+1 , pos(X2,Y2),retract(blink(X1,Y1)),assert(blink(X1,Y1)).
+
+rightClyde:-clyde(X1,Y1),pos(X1,Y1), X2 is X1+1 , Y2 is Y1 , pos(X2,Y2),retract(clyde(X1,Y1)),assert(clyde(X1,Y1)).
+leftClyde:-clyde(X1,Y1),pos(X1,Y1), X2 is X1-1 , Y2 is Y1 , pos(X2,Y2),retract(clyde(X1,Y1)),assert(clyde(X1,Y1)).
+upClyde:-clyde(X1,Y1),pos(X1,Y1), X2 is X1 , Y2 is Y1-1 , pos(X2,Y2),retract(clyde(X1,Y1)),assert(clyde(X1,Y1)).
+downClyde:-clyde(X1,Y1),pos(X1,Y1), X2 is X1 , Y2 is Y1+1 , pos(X2,Y2),retract(clyde(X1,Y1)),assert(clyde(X1,Y1)).
+
+rightInky:-inky(X1,Y1),pos(X1,Y1), X2 is X1+1 , Y2 is Y1 , pos(X2,Y2),retract(inky(X1,Y1)),assert(inky(X1,Y1)).
+leftInky:-inky(X1,Y1),pos(X1,Y1), X2 is X1-1 , Y2 is Y1 , pos(X2,Y2),retract(inky(X1,Y1)),assert(inky(X1,Y1)).
+upInky:-inky(X1,Y1),pos(X1,Y1), X2 is X1 , Y2 is Y1-1 , pos(X2,Y2),retract(inky(X1,Y1)),assert(inky(X1,Y1)).
+downInky:-inky(X1,Y1),pos(X1,Y1), X2 is X1 , Y2 is Y1+1 , pos(X2,Y2),retract(inky(X1,Y1)),assert(inky(X1,Y1)).
+
+rightPinky:-pinky(X1,Y1),pos(X1,Y1), X2 is X1+1 , Y2 is Y1 , pos(X2,Y2),retract(pinky(X1,Y1)),assert(pinky(X1,Y1)).
+leftPinky:-pinky(X1,Y1),pos(X1,Y1), X2 is X1-1 , Y2 is Y1 , pos(X2,Y2),retract(pinky(X1,Y1)),assert(pinky(X1,Y1)).
+upPinky:-pinky(X1,Y1),pos(X1,Y1), X2 is X1 , Y2 is Y1-1 , pos(X2,Y2),retract(pinky(X1,Y1)),assert(pinky(X1,Y1)).
+downPinky:-pinky(X1,Y1),pos(X1,Y1), X2 is X1 , Y2 is Y1+1 , pos(X2,Y2),retract(pinky(X1,Y1)),assert(pinky(X1,Y1)).
 
 
 % quando o pacman come o fantasma
-comerBlinky :- pacman(X,Y,_),blinky(X,Y),retract(blinky(X,Y)),assert(blinky(1,1)),retract(podeComerBlinky).
-comerClyde :- pacman(X,Y,_),clyde(X,Y),retract(clyde(X,Y)),assert(clyde(1,1)),retract(podeComerClyde).
-comerInky :- pacman(X,Y,_),inky(X,Y),retract(inky(X,Y)),assert(inky(1,1)),retract(podeComerInky).
-comerPink :- pacman(X,Y,_),pink(X,Y),retract(pink(X,Y)),assert(pink(1,1)),retract(podeComerPinky).
+comerBlinky :- pacman(X,Y,_),blinky(X,Y),retract(blinky(X,Y)),assert(blinky(19,16)),retract(podeComerBlinky).
+comerClyde :- pacman(X,Y,_),clyde(X,Y),retract(clyde(X,Y)),assert(clyde(19,19)),retract(podeComerClyde).
+comerInky :- pacman(X,Y,_),inky(X,Y),retract(inky(X,Y)),assert(inky(16,16)),retract(podeComerInky).
+comerPink :- pacman(X,Y,_),pink(X,Y),retract(pink(X,Y)),assert(pink(16,19)),retract(podeComerPinky).
