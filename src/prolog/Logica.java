@@ -125,9 +125,10 @@ public class Logica {
         Query q2 = new Query("comerFanstasmas");
         return q2.hasSolution();
     }
+
     
     /**
-     * Avalia se é permitido o pacman comer um determinado fantasma
+     * Avalia se é permitido ao pacman comer um fantasma
      *
      * @param n indica o fanstasma
      * n==0 ---> fantasma vermelho
@@ -137,7 +138,7 @@ public class Logica {
      * @return 
      */
     
-    public Boolean comerFanstasma(int n){
+    public Boolean podeComerFanstasma(int n){
         Query q2;
         switch(n){
             case 0:
@@ -154,6 +155,52 @@ public class Logica {
                 return q2.hasSolution();
             default:
                 return false;
+        }
+    }
+    
+    public int FantasmaX(int n){
+        Query q2;
+        Variable a = new Variable("X");
+        Variable b = new Variable("Y");
+
+        switch(n){
+            case 0:
+                q2 = new Query("blinky", new Term[]{a,b});
+                return java.lang.Integer.parseInt(q2.oneSolution().get("X").toString());
+            case 1:
+                q2 = new Query("clyde", new Term[]{a,b});
+                return java.lang.Integer.parseInt(q2.oneSolution().get("X").toString());
+            case 2:
+                q2 = new Query("inky", new Term[]{a,b});
+                return java.lang.Integer.parseInt(q2.oneSolution().get("X").toString());
+            case 3:
+                q2 = new Query("pinky", new Term[]{a,b});
+                return java.lang.Integer.parseInt(q2.oneSolution().get("X").toString());
+            default:
+                return 0;
+        }
+    }
+    
+    public int FantasmaY(int n){
+        Query q2;
+        Variable a = new Variable("X");
+        Variable b = new Variable("Y");
+
+        switch(n){
+            case 0:
+                q2 = new Query("blinky", new Term[]{a,b});
+                return java.lang.Integer.parseInt(q2.oneSolution().get("Y").toString());
+            case 1:
+                q2 = new Query("clyde", new Term[]{a,b});
+                return java.lang.Integer.parseInt(q2.oneSolution().get("Y").toString());
+            case 2:
+                q2 = new Query("inky", new Term[]{a,b});
+                return java.lang.Integer.parseInt(q2.oneSolution().get("Y").toString());
+            case 3:
+                q2 = new Query("pinky", new Term[]{a,b});
+                return java.lang.Integer.parseInt(q2.oneSolution().get("Y").toString());
+            default:
+                return 0;
         }
     }
 }
