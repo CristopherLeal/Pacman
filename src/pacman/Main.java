@@ -6,10 +6,13 @@
 
 package pacman;
 
+import java.util.Collections;
+import java.util.List;
 import javax.swing.SwingUtilities;
 import jpl.Atom;
 import jpl.Query;
 import prolog.Logica;
+import prolog.Position;
 
 /**
  *
@@ -28,12 +31,13 @@ public class Main {
         };
         SwingUtilities.invokeLater(r);
          
-        //        Logica l = new Logica();
-//        System.out.println(l.pacmanX());
-//        System.out.println(l.pacmanY());
-//        System.out.println(l.pacmanDir());
-//        System.out.println(l.up());
-        
+//        Logica l = new Logica();
+//        List <Position> lista = l.movimentosPosiveis(2, 2);
+//        
+//        for(Position p : lista)
+//        {
+//            System.out.println(p.getX()+","+ p.getY());
+//        }
         
       
        

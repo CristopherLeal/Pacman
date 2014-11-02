@@ -64,6 +64,29 @@ public class Logica {
         return q2.hasSolution();
     }
     
+    public List<Position> movimentosPosiveis(int x1,int y1)
+    {
+        jpl.Integer i = new jpl.Integer(x1);
+        jpl.Integer j = new jpl.Integer(y1);
+        
+        Variable x2 = new Variable("X2");
+        Variable y2 = new Variable("Y2");
+        
+        Query q = new Query("mov", new Term[]{i,j,x2,y2});
+        Hashtable[] solutions = q.allSolutions();
+        
+        List<Position> lista  = new ArrayList<Position>();
+        
+        for(Hashtable s:solutions)
+        {
+            int x = java.lang.Integer.parseInt(s.get("X2").toString()); 
+            int y = java.lang.Integer.parseInt(s.get("Y2").toString());
+            Position p = new Position(x,y);
+            lista.add(p);
+        }
+        return lista;
+    } 
+   
     public Boolean right()
     {
         Query q2 = new Query("right");
