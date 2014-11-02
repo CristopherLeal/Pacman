@@ -111,7 +111,8 @@ public class Logica {
         return q2.hasSolution();
     }
     
-    public String intelFant1(int x1, int y1, int x2, int y2)
+    
+    public String intelFant(int x1, int y1, int x2, int y2, String intel)
     {   
         
         Variable a = new Variable("X");
@@ -120,18 +121,17 @@ public class Logica {
         jpl.Integer i2 = new jpl.Integer(x2);
         jpl.Integer j2 = new jpl.Integer(y2);
 
-        Query q3 = new Query("solvente", new Term[]{i1,j1,i2,j2,a});
+        Query q3 = new Query(intel, new Term[]{i1,j1,i2,j2,a});
         Hashtable result = q3.oneSolution();
         System.out.println(result.get("X").toString());
         return result.get("X").toString();
     }
-    
     public List<Position> getPath(int x, int y){
         Pattern pattern= Pattern.compile("(\\d+)");
         List<Position> posList= new ArrayList<>();
         int X,Y = 0;
         if(posicao(pacmanX(),pacmanY())){
-            String str=intelFant1(x, y, pacmanX(), pacmanY());
+            String str=intelFant(x, y, pacmanX(), pacmanY(),"solvente");
             Matcher matcher=pattern.matcher(str);
             while(matcher.find()){
             X=Integer.parseInt(matcher.group());
@@ -143,7 +143,23 @@ public class Logica {
         }    
         return posList;
     }
-    
+    public List<Position> getPath2(int x, int y){
+        Pattern pattern= Pattern.compile("(\\d+)");
+        List<Position> posList= new ArrayList<>();
+        int X,Y = 0;
+        if(posicao(pacmanX(),pacmanY())){
+            String str=intelFant(x, y, pacmanX(), pacmanY(),"solve2");
+            Matcher matcher=pattern.matcher(str);
+            while(matcher.find()){
+            X=Integer.parseInt(matcher.group());
+              if(matcher.find()){
+                    Y=Integer.parseInt(matcher.group());
+                }
+                posList.add(new Position(X,Y));
+            }
+        }    
+        return posList;
+    }
     public Boolean comerFanstasmas(){
         Query q2 = new Query("comerFanstasmas");
         return q2.hasSolution();
