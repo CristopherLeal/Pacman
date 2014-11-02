@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package prolog;
+import com.sun.org.apache.bcel.internal.generic.AALOAD;
 import java.lang.Integer;
 import jpl.*;
 import java.util.*;
@@ -116,5 +117,41 @@ public class Logica {
             }
         }    
         return posList;
+    }
+    
+    public Boolean comerFanstasmas(){
+        Query q2 = new Query("comerFanstasmas");
+        return q2.hasSolution();
+    }
+    
+    /**
+     * Avalia se é permitido o pacman comer um determinado fantasma
+     *
+     * @param n indica o fanstasma
+     * n==0 ---> fantasma vermelho
+     * n==1 ---> fantasma azul
+     * n==2 ---> fantasma amarelo
+     * n==3 ---> fantasma rosa
+     * @return 
+     */
+    
+    public Boolean comerFanstasma(int n){
+        Query q2;
+        switch(n){
+            case 0:
+                q2 = new Query("comerBlinky");
+                return q2.hasSolution();
+            case 1:
+                q2 = new Query("comerClyde");
+                return q2.hasSolution();
+            case 2:
+                q2 = new Query("comerInky");
+                return q2.hasSolution();
+            case 3:
+                q2 = new Query("comerPink");
+                return q2.hasSolution();
+            default:
+                return false;
+        }
     }
 }

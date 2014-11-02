@@ -18,4 +18,4 @@ down:-pacman(X1,Y1),pos(X1,Y1), X2 is X1 , Y2 is Y1+1 , pos(X2,Y2),retract(pacma
 left:- pacman(X1,Y1),portal(pos(X1,Y1),pos(X2,Y2),esq),retract(pacman(X1,Y1)),assert(pacman(X2,Y2)).
 right:- pacman(X1,Y1),portal(pos(X1,Y1),pos(X2,Y2),dir),retract(pacman(X1,Y1)),assert(pacman(X2,Y2)).
 
-comeu:- pacman(X,Y),fruit(X,Y),retract(fruit(X,Y)).
+comeu:- pacman(X,Y),fruit(X,Y),retract(fruit(X,Y)), assert(comerFantasmas(permitido)).

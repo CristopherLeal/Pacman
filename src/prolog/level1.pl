@@ -553,4 +553,10 @@ down:-pacman(X1,Y1,Z1),pos(X1,Y1), X2 is X1 , Y2 is Y1+1 , pos(X2,Y2),retract(pa
 %%left:- pacman(X1,Y1,Z1),portal(pos(X1,Y1),pos(X2,Y2),esq),retract(pacman(X1,Y1,Z1)),assert(pacman(X2,Y2,'l')).
 %%right:- pacman(X1,Y1,Z1),portal(pos(X1,Y1),pos(X2,Y2),dir),retract(pacman(X1,Y1,Z1)),assert(pacman(X2,Y2,'r')).
 
-comeu:- pacman(X,Y,_),fruit(X,Y),retract(fruit(X,Y)).
+comeu:- pacman(X,Y,_),fruit(X,Y),retract(fruit(X,Y)), assert(comerFantasmas).
+
+comerBlinky :- pacman(X,Y,_),blinky(X,Y),retract(blinky(X,Y)),assert(blinky(1,1)),retract(comerFantasmas).
+comerClyde :- pacman(X,Y,_),clyde(X,Y),retract(clyde(X,Y)),assert(clyde(1,1)),retract(comerFantasmas).
+comerInky :- pacman(X,Y,_),inky(X,Y),retract(inky(X,Y)),assert(inky(1,1)),retract(comerFantasmas).
+comerPink :- pacman(X,Y,_),pink(X,Y),retract(pink(X,Y)),assert(pink(1,1)),retract(comerFantasmas).
+

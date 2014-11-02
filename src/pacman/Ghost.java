@@ -107,28 +107,6 @@ public class Ghost extends Thread {
                 }
             }
 
-            // Move
-//            switch (randGen.nextInt(4) + 1) {
-//            case (1) :
-//                moveCol(-1);
-//
-//                break;
-//
-//            case (2) :
-//                moveCol(1);
-//
-//                break;
-//
-//            case (3) :
-//                moveRow(-1);
-//
-//                break;
-//
-//            case (4) :
-//                moveRow(1);
-//
-//                break;
-//            }
             
             intel.proximoMovimento();
             ghostRow = intel.getX();
