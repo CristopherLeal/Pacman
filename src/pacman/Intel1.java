@@ -40,7 +40,7 @@ public class Intel1 implements Inteligencia {
             y=pos.get(iter).getY();
             iter++;
         }
-        if(iter==pos.size()||iter>1){
+        if(iter==pos.size()){
             iter=0;
             pos=logica.getPath(x , y);
         }
