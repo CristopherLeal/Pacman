@@ -40,11 +40,16 @@ public class Intel1 implements Inteligencia {
             y=pos.get(iter).getY();
             iter++;
         }
-        if(iter==pos.size()||iter>12){
+        //Para a inteligencia solvente, a atualizacao de 10 está boa
+        if(iter==pos.size()||iter>10){
             iter=0;
             pos=logica.getPath(x , y);
         }
-        
+        //Para as outras inteligências, melhor não atualizar, somente quando ele chegar
+        //if(iter==pos.size()){
+          //  iter=0;
+            //pos=logica.getPath(x , y);
+        //}      
              
     }
     @Override
