@@ -337,8 +337,16 @@ comeu:- pacman(X,Y,_),fruit(X,Y),retract(fruit(X,Y)).
 %inteligencia do fantasma 1
 
 
-
-member(X, [Y|T]) :- X = Y; member(X, T).
+solvente(X1,Y1,X2,Y2,Solution):- search([],pos(X1,Y1), pos(X2,Y2), Solution).
+search(_,pos(X2,Y2),pos(X2,Y2),[pos(X2,Y2)|[]]).
+search(Path,pos(X1,Y1),pos(X2,Y2),[pos(X1,Y1)|Sol1]):-Y1<Y2,Y is Y1+1,\+member(pos(X1,Y),Path),mov(X1,Y1,X1,Y),search([pos(X1,Y)|Path],pos(X1,Y),pos(X2,Y2), Sol1).
+search(Path,pos(X1,Y1),pos(X2,Y2),[pos(X1,Y1)|Sol1]):-X1<X2,X is X1+1,\+member(pos(X,Y1),Path),mov(X1,Y1,X,Y1),search([pos(X,Y1)|Path],pos(X,Y1),pos(X2,Y2), Sol1).
+search(Path,pos(X1,Y1),pos(X2,Y2),[pos(X1,Y1)|Sol1]):-Y1>Y2,Y is Y1-1,\+member(pos(X1,Y),Path),mov(X1,Y1,X1,Y),search([pos(X1,Y)|Path],pos(X1,Y),pos(X2,Y2), Sol1).
+search(Path,pos(X1,Y1),pos(X2,Y2),[pos(X1,Y1)|Sol1]):-X1>X2,X is X1-1,\+member(pos(X,Y1),Path),mov(X1,Y1,X,Y1),search([pos(X,Y1)|Path],pos(X,Y1),pos(X2,Y2), Sol1).
+search(Path,pos(X1,Y1),pos(X2,Y2),[pos(X1,Y1)|Sol1]):-Y is Y1+1,\+member(pos(X1,Y),Path),mov(X1,Y1,X1,Y),search([pos(X1,Y)|Path],pos(X1,Y),pos(X2,Y2), Sol1).
+search(Path,pos(X1,Y1),pos(X2,Y2),[pos(X1,Y1)|Sol1]):-X is X1+1,\+member(pos(X,Y1),Path),mov(X1,Y1,X,Y1),search([pos(X,Y1)|Path],pos(X,Y1),pos(X2,Y2), Sol1).
+search(Path,pos(X1,Y1),pos(X2,Y2),[pos(X1,Y1)|Sol1]):-Y is Y1-1,\+member(pos(X1,Y),Path),mov(X1,Y1,X1,Y),search([pos(X1,Y)|Path],pos(X1,Y),pos(X2,Y2), Sol1).
+search(Path,pos(X1,Y1),pos(X2,Y2),[pos(X1,Y1)|Sol1]):-X is X1-1,\+member(pos(X,Y1),Path),mov(X1,Y1,X,Y1),search([pos(X,Y1)|Path],pos(X,Y1),pos(X2,Y2), Sol1).
 
 
 solve(X1,Y1,X2,Y2,Solution):- search([],pos(X1,Y1), pos(X2,Y2), Solution).
@@ -357,3 +365,4 @@ path(X1,Y1,X2,Y2,Path) :-travel(pos(X1,Y1),pos(X2,Y2),[pos(X1,Y1)],Q),reverse(Q,
 travel(pos(X1,Y1),pos(X2,Y2),P,[pos(X2,Y2)|P]) :-mov(X1,Y1,X2,Y2).
 travel(pos(X1,Y1),pos(X2,Y2),Visited,Path) :- mov(X1,Y1,X,Y), pos(X,Y) \== pos(X2,Y2), 
 \+member(pos(X,Y),Visited), travel(pos(X,Y),pos(X2,Y2),[pos(X,Y)|Visited],Path).
+
