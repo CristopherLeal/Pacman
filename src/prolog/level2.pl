@@ -367,3 +367,17 @@ travel(pos(X1,Y1),pos(X2,Y2),P,[pos(X2,Y2)|P]) :-mov(X1,Y1,X2,Y2).
 travel(pos(X1,Y1),pos(X2,Y2),Visited,Path) :- mov(X1,Y1,X,Y), pos(X,Y) \== pos(X2,Y2), 
 \+member(pos(X,Y),Visited), travel(pos(X,Y),pos(X2,Y2),[pos(X,Y)|Visited],Path).
 
+%% movimento dos fantasmas
+
+% quando o jogo comeca ou fantasma morre
+blinky(1,1).
+clindy(1,1).
+inky(1,1).
+pinky(1,1).
+
+
+% quando o pacman come o fantasma
+comerBlinky :- pacman(X,Y,_),blinky(X,Y),retract(blinky(X,Y)),assert(blinky(1,1)),retract(podeComerBlinky).
+comerClyde :- pacman(X,Y,_),clyde(X,Y),retract(clyde(X,Y)),assert(clyde(1,1)),retract(podeComerClyde).
+comerInky :- pacman(X,Y,_),inky(X,Y),retract(inky(X,Y)),assert(inky(1,1)),retract(podeComerInky).
+comerPink :- pacman(X,Y,_),pink(X,Y),retract(pink(X,Y)),assert(pink(1,1)),retract(podeComerPinky).
