@@ -160,6 +160,23 @@ public class Logica {
         }    
         return posList;
     }
+    public List<Position> getPath3(int x, int y){
+        Pattern pattern= Pattern.compile("(\\d+)");
+        List<Position> posList= new ArrayList<>();
+        int X,Y = 0;
+        if(posicao(pacmanX(),pacmanY())){
+            String str=intelFant(x, y, pacmanX(), pacmanY(),"path");
+            Matcher matcher=pattern.matcher(str);
+            while(matcher.find()){
+            X=Integer.parseInt(matcher.group());
+              if(matcher.find()){
+                    Y=Integer.parseInt(matcher.group());
+                }
+                posList.add(new Position(X,Y));
+            }
+        }    
+        return posList;
+    }
     public Boolean comerFanstasmas(){
         Query q2 = new Query("comerFanstasmas");
         return q2.hasSolution();

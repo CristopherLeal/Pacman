@@ -54,7 +54,7 @@ public final class Maze extends JPanel {
         inky   = new Ghost(this, "inky.png",new Intel1(logica,2));
         blinky = new Ghost( this, "blinky.png", new Intel1(logica,0));
         pinky  = new Ghost( this, "pinky.png",new IntelFraca(logica,3));
-        clyde  = new Ghost( this, "clyde.png",new Intel1(logica,1));
+        clyde  = new Ghost( this, "clyde.png",new IntelFraca2(logica,1));
 
         // Start ghosts first
         inky.start();
