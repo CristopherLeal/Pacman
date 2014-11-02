@@ -349,6 +349,16 @@ search(Path,pos(X1,Y1),pos(X2,Y2),[pos(X1,Y1)|Sol1]):-Y is Y1-1,\+member(pos(X1,
 search(Path,pos(X1,Y1),pos(X2,Y2),[pos(X1,Y1)|Sol1]):-X is X1-1,\+member(pos(X,Y1),Path),mov(X1,Y1,X,Y1),search([pos(X,Y1)|Path],pos(X,Y1),pos(X2,Y2), Sol1).
 
 
+solve2(X1,Y1,X2,Y2,Solution):- search2([],pos(X1,Y1), pos(X2,Y2), Solution).
+search2(_,pos(X2,Y2),pos(X2,Y2),[pos(X2,Y2)|[]]).
+search2(Path,pos(X1,Y1),pos(X2,Y2),[pos(X1,Y1)|Sol1]):- \+(X1==X2),X is X1+1,\+(member(pos(X,Y1),Path)),mov(X1,Y1,X,Y1),search2([pos(X,Y1)|Path],pos(X,Y1),pos(X2,Y2), Sol1).
+search2(Path,pos(X1,Y1),pos(X2,Y2),[pos(X1,Y1)|Sol1]):- \+(X1==X2),X is X1-1,\+(member(pos(X,Y1),Path)),mov(X1,Y1,X,Y1),search2([pos(X,Y1)|Path],pos(X,Y1),pos(X2,Y2), Sol1).
+search2(Path,pos(X1,Y1),pos(X2,Y2),[pos(X1,Y1)|Sol1]):- \+(Y1==Y2),Y is Y1+1,\+(member(pos(X1,Y),Path)),mov(X1,Y1,X1,Y),search2([pos(X1,Y)|Path],pos(X1,Y),pos(X2,Y2), Sol1).
+search2(Path,pos(X1,Y1),pos(X2,Y2),[pos(X1,Y1)|Sol1]):- \+(Y1==Y2),Y is Y1-1,\+(member(pos(X1,Y),Path)),mov(X1,Y1,X1,Y),search2([pos(X1,Y)|Path],pos(X1,Y),pos(X2,Y2), Sol1).
+search2(Path,pos(X1,Y1),pos(X1,Y2),[pos(X1,Y1)|Sol1]):-X is X1+1,\+member(pos(X,Y1),Path),mov(X1,Y1,X,Y1),search2([pos(X,Y1)|Path],pos(X,Y1),pos(X1,Y2), Sol1).
+search2(Path,pos(X1,Y1),pos(X1,Y2),[pos(X1,Y1)|Sol1]):-X is X1-1,\+member(pos(X,Y1),Path),mov(X1,Y1,X,Y1),search2([pos(X,Y1)|Path],pos(X,Y1),pos(X1,Y2), Sol1).
+search2(Path,pos(X1,Y1),pos(X2,Y1),[pos(X1,Y1)|Sol1]):-Y is Y1+1,\+member(pos(X1,Y),Path),mov(X1,Y1,X1,Y),search2([pos(X1,Y)|Path],pos(X1,Y),pos(X2,Y1), Sol1).
+search2(Path,pos(X1,Y1),pos(X2,Y1),[pos(X1,Y1)|Sol1]):-Y is Y1-1,\+member(pos(X1,Y),Path),mov(X1,Y1,X1,Y),search2([pos(X1,Y)|Path],pos(X1,Y),pos(X2,Y1), Sol1).
 
 
 path(X1,Y1,X2,Y2,Path) :-travel(pos(X1,Y1),pos(X2,Y2),[pos(X1,Y1)],Q),reverse(Q,Path).
