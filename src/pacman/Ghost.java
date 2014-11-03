@@ -122,6 +122,12 @@ public class Ghost extends Thread {
             ghostPicIcon = Toolkit.getDefaultToolkit().getImage(IMAGE_SOURCE + "ghost32.png");
         }
     }
+    
+    public void matarFantasma(int x,int y,int codGhost)
+    {
+        intel = new IntelParado(maze.logica,x,y,codGhost);
+        ghostPicIcon=null;
+    }
 
     protected void endgame() {
         this.isRunning = false;

@@ -348,6 +348,28 @@ public class Logica {
         }
     }
     
+    public boolean matarFantasma(int n)
+    {
+        Query q2;
+        
+        switch(n){
+            case 0:
+                q2 = new Query("matarBlinky");
+                return q2.hasSolution();
+            case 1:
+                q2 = new Query("matarClyde");
+                return q2.hasSolution();
+            case 2:
+                q2 = new Query("matarInky");
+                return q2.hasSolution();
+            case 3:
+                q2 = new Query("matarPinky");
+                return q2.hasSolution();
+            default:
+                    return false;
+        }
+    }
+    
     public boolean colisao()
     {
         Query q = new Query("colisao");

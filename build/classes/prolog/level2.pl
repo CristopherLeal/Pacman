@@ -415,5 +415,7 @@ colisao:-pacman(X,Y,_),inky(X,Y).
 colisao:-pacman(X,Y,_),clyde(X,Y).
 colisao:-pacman(X,Y,_),pinky(X,Y).
 
-
-
+matarBlinky:-(retract(blinky(X1,Y1)),assert(blinky(0,0))).
+matarInky:-(retract(inky(X1,Y1)),assert(inky(0,0))).
+matarPinky:-(retract(pinky(X1,Y1)),assert(pinky(0,0))).
+matarClyde:-(retract(clyde(X1,Y1)),assert(clyde(0,0))).
