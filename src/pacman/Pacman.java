@@ -10,20 +10,26 @@ package pacman;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import prolog.Logica;
 
 public class Pacman extends Thread {
     
     //path das imagens  
     private static final String IMAGE_SOURCE     = "src/pacman/img/";
-    static String[]             pacmanSequencesL = { IMAGE_SOURCE + "pac32_left.png", IMAGE_SOURCE + "pac32_left_wide.png",
-            IMAGE_SOURCE + "pac32_left_widest.png", IMAGE_SOURCE + "pacman_closed.png" };
-    static String[] pacmanSequencesR = { IMAGE_SOURCE + "pac32_right.png", IMAGE_SOURCE + "pac32_right_widest.png",
-            IMAGE_SOURCE + "pac32_right_wide.png", IMAGE_SOURCE + "pacman_closed.png" };
-    static String[] pacmanSequencesU = { IMAGE_SOURCE + "pac32_up.png", IMAGE_SOURCE + "pac32_up_wide.png",
-            IMAGE_SOURCE + "pac32_up_widest.png", IMAGE_SOURCE + "pacman_closed.png" };
-    static String[] pacmanSequencesD = { IMAGE_SOURCE + "pac32_down.png", IMAGE_SOURCE + "pac32_down_wide.png",
-            IMAGE_SOURCE + "pac32_down_widest.png", IMAGE_SOURCE + "pacman_closed.png" };
+    static String[]             pacmanSequencesL = {IMAGE_SOURCE + "pacman.gif", IMAGE_SOURCE + "pacman-l 1.gif",
+            IMAGE_SOURCE + "pacman-l 2.gif", IMAGE_SOURCE + "pacman-l 3.gif",IMAGE_SOURCE + "pacman-l 4.gif",
+    IMAGE_SOURCE + "pacman-l 5.gif",IMAGE_SOURCE + "pacman-l 6.gif",IMAGE_SOURCE + "pacman-l 7.gif",IMAGE_SOURCE + "pacman-l 8.gif"};
+    static String[] pacmanSequencesR = { IMAGE_SOURCE + "pacman.gif", IMAGE_SOURCE + "pacman-r 1.gif",
+            IMAGE_SOURCE + "pacman-r 2.gif", IMAGE_SOURCE + "pacman-r 3.gif",IMAGE_SOURCE + "pacman-r 4.gif",
+    IMAGE_SOURCE + "pacman-r 5.gif",IMAGE_SOURCE + "pacman-r 6.gif",IMAGE_SOURCE + "pacman-r 7.gif",IMAGE_SOURCE + "pacman-r 8.gif"};
+    static String[] pacmanSequencesU = { IMAGE_SOURCE + "pacman.gif", IMAGE_SOURCE + "pacman-u 1.gif",
+            IMAGE_SOURCE + "pacman-u 2.gif", IMAGE_SOURCE + "pacman-u 3.gif",IMAGE_SOURCE + "pacman-u 4.gif",
+    IMAGE_SOURCE + "pacman-u 5.gif",IMAGE_SOURCE + "pacman-u 6.gif",IMAGE_SOURCE + "pacman-u 7.gif",IMAGE_SOURCE + "pacman-u 8.gif"};
+    static String[] pacmanSequencesD = { IMAGE_SOURCE + "pacman.gif", IMAGE_SOURCE + "pacman-d 1.gif",
+            IMAGE_SOURCE + "pacman-d 2.gif", IMAGE_SOURCE + "pacman-d 3.gif",IMAGE_SOURCE + "pacman-d 4.gif",
+    IMAGE_SOURCE + "pacman-d 5.gif",IMAGE_SOURCE + "pacman-d 6.gif",IMAGE_SOURCE + "pacman-d 7.gif",IMAGE_SOURCE + "pacman-d 8.gif"};
     int current = 0;
     // direcao inicial invalida
     private char   direction     = 'x';
@@ -46,9 +52,15 @@ public class Pacman extends Thread {
     private String score_string;
     Thread         thread;
     Logica logica;
-    PacmanGUI gui;
 
     public Pacman( Maze startMaze, int lives,Logica inte) {
+
+
+
+    
+        
+ 
+
         this.logica = inte;
         mov = new Movimento();     
         maze      = startMaze;
@@ -166,51 +178,61 @@ public class Pacman extends Thread {
         
         while (isRunning) 
        {
-           pastRow = logica.pacmanX();
-           pastCol = logica.pacmanY();
-           
-           
-            if (direction == 'u') 
-            {
-                 logica.up();
-            }
-
-            if (direction == 'd') 
-            {
-                logica.down();
-            }
-
-            if (direction == 'l') 
-            {
-                logica.left();
-            }
-
-            if (direction == 'r') 
-            {
-                logica.right();
-            }
-
-           direction = logica.pacmanDir();
-            
-           pacmanRow = logica.pacmanX();
-           pacmanCol = logica.pacmanY();
-           
-           mov.setX1(pastRow);
-           mov.setY1(pastCol);
-           mov.setX2(pacmanRow);
-           mov.setY2(pacmanCol);
-           
-            eatPellet(getCol(), getRow());
-           
-            maze.checkCollision();
-            maze.repaint();
-
-           
-            
             try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                System.err.println(e);
+                pastRow = logica.pacmanX();
+                pastCol = logica.pacmanY();
+                
+                
+                if (direction == 'u')
+                {
+                    logica.up();
+                }
+                
+                if (direction == 'd')
+                {
+                    logica.down();
+                }
+                
+                if (direction == 'l')
+                {
+                    logica.left();
+                }
+                
+                if (direction == 'r')
+                {
+                    logica.right();
+                }
+                
+                direction = logica.pacmanDir();
+                
+                pacmanRow = logica.pacmanX();
+                pacmanCol = logica.pacmanY();
+                
+                mov.setX1(pastRow);
+                mov.setY1(pastCol);
+                mov.setX2(pacmanRow);
+                mov.setY2(pacmanCol);
+                
+                
+                eatPellet(getCol(), getRow());
+                
+                
+                
+                
+                
+                
+                maze.checkCollision();
+                maze.repaint();
+                
+                
+                
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    System.err.println(e);
+                }
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Pacman.class.getName()).log(Level.SEVERE, null,ex);
             }
         }
     }
@@ -221,7 +243,7 @@ public class Pacman extends Thread {
      * Check if next move will be pellet Detect Collision and "eat pellet"
      *
      */
-    public void eatPellet(int column, int row) 
+    public void eatPellet(int column, int row) throws InterruptedException 
     {
   
         if (cells[column][row].getType() == 'd') {
@@ -232,12 +254,16 @@ public class Pacman extends Thread {
         }
         
         if (cells[column][row].getType() == 'p') {
+           
             score                   += 50;
             cells[column][row].type = 'o';
            
             maze.setEdible();
         }
     }
+    
+   
+    
 
     public int getScore() {
         return score;

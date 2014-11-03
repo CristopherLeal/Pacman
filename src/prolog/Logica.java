@@ -17,6 +17,7 @@ import java.util.regex.Pattern;
  */
 public class Logica {
     
+    
     public Logica()
     {
         Query q1 = new Query("consult", new Atom("src/prolog/level2.pl"));
