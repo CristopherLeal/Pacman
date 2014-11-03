@@ -25,14 +25,14 @@ public class IntelFraca implements Inteligencia {
     List<Position> pos;
     
     //importante que todos tenham a mesma instancia da logica
-    IntelFraca(Logica logica,int codGhost)
+    IntelFraca(Logica logica,int codGhost,int sleep)
     {
         this.logica=logica;
         this.codGhost = codGhost;
         x=logica.FantasmaX(codGhost);
         y=logica.FantasmaY(codGhost);
         iter=0;
-        sleep = 300;
+        this.sleep =sleep ;
         pos= logica.getPath(x , y);
     }
     

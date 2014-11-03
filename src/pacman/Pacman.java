@@ -46,9 +46,9 @@ public class Pacman extends Thread {
     private String score_string;
     Thread         thread;
     Logica logica;
+    PacmanGUI gui;
 
     public Pacman( Maze startMaze, int lives,Logica inte) {
-        
         this.logica = inte;
         mov = new Movimento();     
         maze      = startMaze;
@@ -201,17 +201,14 @@ public class Pacman extends Thread {
            mov.setY2(pacmanCol);
            
             eatPellet(getCol(), getRow());
-         
-           
            
             maze.checkCollision();
             maze.repaint();
 
-            System.out.println("presente:" +pacmanRow+","+pacmanCol);
-            System.out.println("passado:" + pastRow+","+pastCol);
+           
             
             try {
-                Thread.sleep(135);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 System.err.println(e);
             }
@@ -226,23 +223,18 @@ public class Pacman extends Thread {
      */
     public void eatPellet(int column, int row) 
     {
-        boolean terminou = true;
+  
         if (cells[column][row].getType() == 'd') {
             score                   += 10;
             cells[column][row].type = 'o';
-            PacmanGUI.newDisp();
-            terminou = false;
+       
+           
         }
         
-        if (terminou)
-        {
-            System.out.println("Win");
-        }
-
         if (cells[column][row].getType() == 'p') {
             score                   += 50;
             cells[column][row].type = 'o';
-            PacmanGUI.newDisp();
+           
             maze.setEdible();
         }
     }

@@ -8,6 +8,8 @@ package pacman;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
@@ -15,6 +17,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JPanel;
+
 import prolog.Logica;
 
 /**
@@ -38,18 +41,27 @@ public final class Maze extends JPanel {
     private final Ghost    pinky;
     private int      tileHeight;
     private int      tileWidth;
+    public boolean ganhou;
+ 
    
-    public Maze() 
+    public Maze(PacmanGUI gui) 
     {
+        ganhou = false;
         createCellArray(map);
         setPreferredSize(new Dimension(CELL * tileWidth, CELL * tileHeight));
         pacman = new Pacman(this, 3,logica);
-        inky   = new Ghost(this, "inky.png",new IntelForte(logica,2,130));
-        blinky = new Ghost( this, "blinky.png", new IntelForte(logica,0,130));
-        pinky  = new Ghost( this, "pinky.png",new IntelFraca(logica,3));
-        clyde  = new Ghost( this, "clyde.png",new IntelFraca2(logica,1));
+        inky   = new Ghost(this, "inky.png",new IntelForte(logica,2,130),new IntelFraca2(logica,2));
+        blinky = new Ghost( this, "blinky.png",new IntelForte(logica,0,130), new IntelFraca2(logica,0));
+        pinky  = new Ghost( this, "pinky.png",new IntelFraca(logica,3,130),new IntelFraca2(logica,3));
+        clyde  = new Ghost( this, "clyde.png",new IntelFraca(logica,1,130),new IntelFraca2(logica,1));
 
         // Start ghosts first
+        
+//        inky.changeIntel();
+//        blinky.changeIntel();
+//        pinky.changeIntel();
+//        clyde.changeIntel();
+        
         inky.start();
         blinky.start();
         pinky.start();
@@ -157,22 +169,44 @@ public final class Maze extends JPanel {
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, tileWidth * CELL, tileHeight * CELL);
 
+        ganhou = true;
         // Outer loop loops through each row in the array
         for (int row = 0; row < tileHeight; row++) {
 
             // Inner loop loops through each column in the array
             for (int column = 0; column < tileWidth; column++) {
                 cells[row][column].drawBackground(g);
+                if(cells[row][column].getType()=='d' || cells[row][column].getType()=='p')
+                {
+                    ganhou=false;
+                }
+                    
             }
         }
 
         // Pacman.drawScore(g);
-        checkCollision();
+       if( checkCollision())
+       {
+            Toolkit kit = Toolkit.getDefaultToolkit();
+            Image i = kit.getImage("src/img/large/game_over.png");
+           g.drawImage(i, 40, 40, 520, 540,this);
+       }
         pacman.drawPacman(g);
         inky.drawGhost(g);
         blinky.drawGhost(g);
         clyde.drawGhost(g);
         pinky.drawGhost(g);
+        
+        if(ganhou)
+        {
+            Toolkit kit = Toolkit.getDefaultToolkit();
+            Image i = kit.getImage("src/img/large/YouWin.PNG");
+            g.drawImage(i, 40, 40, 520, 540,this);
+            loseLife();
+        }
+       
+        
+        
     }
 
     public Cell[][] getCells() {
@@ -199,25 +233,26 @@ public final class Maze extends JPanel {
         System.out.println("OMNOMNOM!");
     }
 
-    public void checkCollision() {
-
-        
-        
+    public boolean checkCollision() {
+     
         if(logica.colisao() || verificaTroca(blinky.getMov(),pacman.getMov()) || verificaTroca(pinky.getMov(),pacman.getMov())
                 || verificaTroca(inky.getMov(),pacman.getMov()) || verificaTroca(clyde.getMov(),pacman.getMov()))
         {
-             loseLife();
+             //loseLife();
+            
+        inky.changeIntel();
+        blinky.changeIntel();
+        pinky.changeIntel();
+        clyde.changeIntel();
+            
+             return true;
         }
-        
-
-        
+        return false; 
     }
 
     public void loseLife() {
         lives--;
-        PacmanGUI.newDisp();    // TODO - This doesn't appear to update lives
-
-        // TODO - Need to integrate an actual death.
+        
         if (lives <= 0) {
             inky.endgame();
             blinky.endgame();

@@ -6,9 +6,8 @@
 
 package pacman;
 
-import java.applet.Applet;
-import java.applet.AudioClip;
 import java.io.File;
+import java.net.MalformedURLException;
 import java.util.Collections;
 import java.util.List;
 import javax.swing.SwingUtilities;
@@ -27,20 +26,18 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Runnable r;
-
-        r = () -> {
-            new PacmanGUI().startGUI();
-        };
-        SwingUtilities.invokeLater(r);
+//        Runnable r;
+//
+//        r = new Runnable() {
+//
+//            public void run() {
+//                new PacmanGUI().startGUI();
+//            }
+//        };
+//        SwingUtilities.invokeLater(r);
         
+         new PacmanGUI().startGUI();
         
-//        try {    
-//                AudioClip clip = Applet.newAudioClip(new File("C:\\som.wav").toURL());    
-//                clip.play();    
-//            } catch (MalformedURLException ex) {    
-//                ex.printStackTrace();    
-//            }   
         
          
       //  Logica l = new Logica();

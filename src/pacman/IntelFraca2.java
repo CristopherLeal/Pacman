@@ -31,7 +31,7 @@ public class IntelFraca2 implements Inteligencia {
         x=logica.FantasmaX(codGhost);
         y=logica.FantasmaY(codGhost);
         iter=0;
-        sleep = 100;
+        sleep = 400;
         pos= logica.getPath(x , y);
     }
 

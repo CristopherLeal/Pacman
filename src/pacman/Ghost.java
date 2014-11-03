@@ -21,24 +21,31 @@ public class Ghost extends Thread {
     boolean                     deadly              = true;
     Cell[][]                    cells;  
     private Image               ghostPicIcon;
+    String ghostGraphic;
     private int                 ghostRow, ghostCol;
     private int                 pastRow,pastCol;
     Movimento mov;
     Maze                        maze;
     final int CELL=20;
+    Inteligencia stupid;
+    Inteligencia smart;
     Inteligencia intel;
+    boolean mortal;
     int sleep;
 
-    public Ghost(Maze startMaze, String ghostGraphic ,Inteligencia intel) 
+    public Ghost(Maze startMaze, String ghostGraphic ,Inteligencia smart,Inteligencia stupid) 
     {
-        
-        this.intel = intel;
+        this.smart = smart;
+        this.stupid = stupid;
+        this.intel = smart;
+        mortal = false;
         mov = new Movimento();
         ghostRow = intel.getX();
         ghostCol = intel.getY();
         sleep = intel.getSleep();
         maze     = startMaze;
         cells        = maze.getCells();
+        this.ghostGraphic = ghostGraphic;
         ghostPicIcon = Toolkit.getDefaultToolkit().getImage(IMAGE_SOURCE + ghostGraphic);
     }
 
@@ -93,10 +100,26 @@ public class Ghost extends Thread {
             maze.repaint();
 
             try {
-                Thread.sleep(sleep);
+                Thread.sleep(intel.getSleep());
             } catch (InterruptedException e) {
                 System.err.println(e);
             }
+        }
+    }
+    
+    public void changeIntel()
+    {
+        if(mortal)
+        {
+            intel = smart;
+            mortal = false;
+            ghostPicIcon = Toolkit.getDefaultToolkit().getImage(IMAGE_SOURCE + ghostGraphic);
+        }
+        else
+        {
+            intel = stupid;
+            mortal = true;
+            ghostPicIcon = Toolkit.getDefaultToolkit().getImage(IMAGE_SOURCE + "ghost32.png");
         }
     }
 
