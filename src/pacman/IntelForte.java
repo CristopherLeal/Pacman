@@ -24,7 +24,8 @@ public class IntelForte implements Inteligencia {
     private Logica logica;
     List<Position> pos;
     //importante que todos tenham a mesma instancia da logica
-    IntelForte(Logica logica,int codGhost)
+
+    public IntelForte(Logica logica,int codGhost, int sleep)
     {
         this.logica=logica;
         this.codGhost = codGhost;
@@ -32,7 +33,7 @@ public class IntelForte implements Inteligencia {
         y=logica.FantasmaY(codGhost);      
         iter=0;
         pos= logica.getPath(x , y);
-        sleep = 130;
+        this.sleep = sleep;
     }
     
 //    Intel1(Logica logica,int X,int Y)

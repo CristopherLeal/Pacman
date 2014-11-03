@@ -181,7 +181,10 @@ public class Logica {
         Query q2 = new Query("comerFanstasmas");
         return q2.hasSolution();
     }
-
+    public Boolean fanstasmaComeu(String str){
+        Query q2 = new Query(str);
+        return q2.hasSolution();
+    }
     
     /**
      * Avalia se é permitido ao pacman comer um fantasma
