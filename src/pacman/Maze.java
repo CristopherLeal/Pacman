@@ -44,7 +44,7 @@ public final class Maze extends JPanel {
     private final Ghost    pinky;
     private int      tileHeight;
     private int      tileWidth;
-
+    public boolean mortal;
     public boolean ganhou;
  
    
@@ -55,6 +55,7 @@ public final class Maze extends JPanel {
 
     {
         ganhou = false;
+        mortal = false;
         createCellArray(map);
         setPreferredSize(new Dimension(CELL * tileWidth, CELL * tileHeight));
         pacman = new Pacman(this, 3,logica);
@@ -195,7 +196,7 @@ public final class Maze extends JPanel {
         }
 
         // Pacman.drawScore(g);
-       if( checkCollision())
+       if( checkCollision() && !mortal)
        {
             Toolkit kit = Toolkit.getDefaultToolkit();
             Image i = kit.getImage("src/img/large/game_over.png");
@@ -231,36 +232,35 @@ public final class Maze extends JPanel {
         return pacman.getLives();
     }
 
-    public void setEdible() {
-        inky.deadly                = false;
-        blinky.deadly              = false;
-        pinky.deadly               = false;
-        clyde.deadly               = false;
-        inky.edibleLifeRemaining   = inky.edibleLifetime;
-        blinky.edibleLifeRemaining = blinky.edibleLifetime;
-        pinky.edibleLifeRemaining  = pinky.edibleLifetime;
-        clyde.edibleLifeRemaining  = clyde.edibleLifetime;
-        System.out.println("OMNOMNOM!");
+    public void changeMortal() 
+    {
+        if(mortal)
+             mortal=false;
+        else
+            mortal = true;
+        inky.changeIntel();
+        blinky.changeIntel();
+        pinky.changeIntel();
+        clyde.changeIntel();
+        
     }
 
 
    
      
 
-    public boolean checkCollision() {
+    public boolean checkCollision() 
+    {
         
-
-        if(logica.colisao() || verificaTroca(blinky.getMov(),pacman.getMov()) || verificaTroca(pinky.getMov(),pacman.getMov())
-                || verificaTroca(inky.getMov(),pacman.getMov()) || verificaTroca(clyde.getMov(),pacman.getMov()))
+        if(mortal && logica.colisao())
         {
-             //loseLife();
-            
-        inky.changeIntel();
-        blinky.changeIntel();
-        pinky.changeIntel();
-        clyde.changeIntel();
-            
-             return true;
+            return true;
+        }
+        if(!mortal && (logica.colisao() || verificaTroca(blinky.getMov(),pacman.getMov()) || verificaTroca(pinky.getMov(),pacman.getMov())
+                || verificaTroca(inky.getMov(),pacman.getMov()) || verificaTroca(clyde.getMov(),pacman.getMov())))
+        {   
+            loseLife();
+            return true;
         }
 
         return false; 

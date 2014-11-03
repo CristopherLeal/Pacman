@@ -52,15 +52,12 @@ public class Pacman extends Thread {
     private String score_string;
     Thread         thread;
     Logica logica;
-
+    private int timer=0;
+    
+    
     public Pacman( Maze startMaze, int lives,Logica inte) {
 
-
-
-    
         
- 
-
         this.logica = inte;
         mov = new Movimento();     
         maze      = startMaze;
@@ -178,6 +175,16 @@ public class Pacman extends Thread {
         
         while (isRunning) 
        {
+           if(maze.mortal && timer <30)   
+                 timer++;
+           if(maze.mortal && timer >=30)
+           {
+               timer=0;
+               maze.changeMortal();
+           }
+           
+          
+           
             try {
                 pastRow = logica.pacmanX();
                 pastCol = logica.pacmanY();
@@ -216,15 +223,8 @@ public class Pacman extends Thread {
                 
                 eatPellet(getCol(), getRow());
                 
-                
-                
-                
-                
-                
                 maze.checkCollision();
                 maze.repaint();
-                
-                
                 
                 try {
                     Thread.sleep(100);
@@ -249,16 +249,14 @@ public class Pacman extends Thread {
         if (cells[column][row].getType() == 'd') {
             score                   += 10;
             cells[column][row].type = 'o';
-       
-           
+              
         }
         
         if (cells[column][row].getType() == 'p') {
            
             score                   += 50;
-            cells[column][row].type = 'o';
-           
-            maze.setEdible();
+            cells[column][row].type = 'o';      
+            maze.changeMortal();
         }
     }
     
