@@ -407,3 +407,8 @@ comerBlinky :- pacman(X,Y,_),blinky(X,Y),retract(blinky(X,Y)),assert(blinky(19,1
 comerClyde :- pacman(X,Y,_),clyde(X,Y),retract(clyde(X,Y)),assert(clyde(19,19)),retract(podeComerClyde).
 comerInky :- pacman(X,Y,_),inky(X,Y),retract(inky(X,Y)),assert(inky(16,16)),retract(podeComerInky).
 comerPink :- pacman(X,Y,_),pink(X,Y),retract(pink(X,Y)),assert(pink(16,19)),retract(podeComerPinky).
+
+colisao:-pacman(X,Y,_),blinky(X,Y).
+colisao:-pacman(X,Y,_),inky(X,Y).
+colisao:-pacman(X,Y,_),clyde(X,Y).
+colisao:-pacman(X,Y,_),pinky(X,Y).

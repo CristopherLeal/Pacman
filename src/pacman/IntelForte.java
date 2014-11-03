@@ -14,7 +14,7 @@ import prolog.Position;
  *
  * @author cristopher
  */
-public class Intel1 implements Inteligencia {
+public class IntelForte implements Inteligencia {
 
     private int x;
     private int y;
@@ -24,7 +24,7 @@ public class Intel1 implements Inteligencia {
     private Logica logica;
     List<Position> pos;
     //importante que todos tenham a mesma instancia da logica
-    Intel1(Logica logica,int codGhost)
+    IntelForte(Logica logica,int codGhost)
     {
         this.logica=logica;
         this.codGhost = codGhost;

@@ -343,4 +343,10 @@ public class Logica {
                     return false;
         }
     }
+    
+    public boolean colisao()
+    {
+        Query q = new Query("colisao");
+        return q.hasSolution();
+    }
 }

@@ -24,10 +24,14 @@ public class Ghost extends Thread {
   //  private char                direction;
     private Image               ghostPicIcon;
     private int                 ghostRow, ghostCol;
+    private int                 pastRow,pastCol;
+    Movimento mov;
     Maze                        maze;
     final int CELL=20;
     
     Inteligencia intel;
+    
+    
     int sleep;
 
     public Ghost(Maze startMaze, String ghostGraphic ,Inteligencia intel) {
@@ -36,7 +40,7 @@ public class Ghost extends Thread {
         
 //        ghostRow = initialRow;
 //        ghostCol = initialColumn;
-        
+        mov = new Movimento();
         ghostRow = intel.getX();
         ghostCol = intel.getY();
         sleep = intel.getSleep();
@@ -65,6 +69,11 @@ public class Ghost extends Thread {
      */
     public int getCol() {
         return intel.getY();
+    }
+    
+    public Movimento getMov()
+    {
+        return mov;
     }
 
     /*
@@ -112,9 +121,18 @@ public class Ghost extends Thread {
             }
 
             
+            
+            pastRow = ghostRow;
+            pastCol = ghostCol;
             intel.proximoMovimento();
             ghostRow = intel.getX();
             ghostCol = intel.getY();
+            
+            mov.setX1(pastRow);
+            mov.setY1(pastCol);
+            mov.setX2(ghostRow);
+            mov.setY2(ghostCol);
+            
             
             maze.repaint();
 

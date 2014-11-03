@@ -49,6 +49,9 @@ public class Pacman extends Thread {
     //labirinto
     Maze           maze;
     private int    pacmanRow, pacmanCol;
+    private int    pastRow,pastCol;
+    private Movimento mov;
+    
     private String score_string;
     Thread         thread;
     
@@ -59,8 +62,7 @@ public class Pacman extends Thread {
     public Pacman( Maze startMaze, int lives,Logica inte) {
         
         this.logica = inte;
-//        pacmanRow = initialRow;
-//        pacmanCol = initialColumn;
+        mov = new Movimento();
         
    
         
@@ -92,13 +94,16 @@ public class Pacman extends Thread {
      *
      */
     public void drawPacman(Graphics g) {
+        
+        int row = getRow();
+        int col = getCol();
        
         if (direction == 'u') {
             if (current > pictureUp.length - 1) {
                 current = 0;
             }
 
-            g.drawImage(pictureUp[current], getRow() * CELL, getCol() * CELL, 22, 22, maze);
+            g.drawImage(pictureUp[current], row * CELL, col * CELL, 22, 22, maze);
         }
 
         if (direction == 'd') {
@@ -106,7 +111,7 @@ public class Pacman extends Thread {
                 current = 0;
             }
 
-            g.drawImage(pictureDown[current], getRow() * CELL, getCol() * CELL, 22, 22, maze);
+            g.drawImage(pictureDown[current], row * CELL, col * CELL, 22, 22, maze);
         }
 
         if (direction == 'l') {
@@ -114,7 +119,7 @@ public class Pacman extends Thread {
                 current = 0;
             }
 
-            g.drawImage(pictureLeft[current], getRow() * CELL, getCol() * CELL, 22, 22, maze);
+            g.drawImage(pictureLeft[current], row * CELL, col * CELL, 22, 22, maze);
         }
 
         if (direction == 'r') {
@@ -122,7 +127,7 @@ public class Pacman extends Thread {
                 current = 0;
             }
 
-            g.drawImage(pictureRight[current], getRow() * CELL, getCol() * CELL, 22, 22, maze);
+            g.drawImage(pictureRight[current], row * CELL, col * CELL, 22, 22, maze);
         }
         
         
@@ -161,6 +166,12 @@ public class Pacman extends Thread {
         }
     }
 
+    Movimento getMov()
+    {
+        return mov;
+    }
+    
+    
     /*
      * Move horizontally
      *
@@ -195,9 +206,14 @@ public class Pacman extends Thread {
     @Override
     public void run() {
         
-         
         
-        while (isRunning) {
+        
+        while (isRunning) 
+       {
+           pastRow = logica.pacmanX();
+           pastCol = logica.pacmanY();
+           
+           
             if (direction == 'u') {
                 //moveCol(-1);
                  logica.up();
@@ -220,8 +236,13 @@ public class Pacman extends Thread {
 
            direction = logica.pacmanDir();
             
+           pacmanRow = logica.pacmanX();
+           pacmanCol = logica.pacmanY();
            
-
+           mov.setX1(pastRow);
+           mov.setY1(pastCol);
+           mov.setX2(pacmanRow);
+           mov.setY2(pacmanCol);
            
             eatPellet(getCol(), getRow());
          
@@ -230,6 +251,9 @@ public class Pacman extends Thread {
             maze.checkCollision();
             maze.repaint();
 
+            System.out.println("presente:" +pacmanRow+","+pacmanCol);
+            System.out.println("passado:" + pastRow+","+pastCol);
+            
             try {
                 Thread.sleep(135);
             } catch (InterruptedException e) {

@@ -51,8 +51,8 @@ public final class Maze extends JPanel {
         createCellArray(map);
         setPreferredSize(new Dimension(CELL * tileWidth, CELL * tileHeight));
         pacman = new Pacman(this, 3,logica);
-        inky   = new Ghost(this, "inky.png",new Intel1(logica,2));
-        blinky = new Ghost( this, "blinky.png", new Intel1(logica,0));
+        inky   = new Ghost(this, "inky.png",new IntelForte(logica,2));
+        blinky = new Ghost( this, "blinky.png", new IntelForte(logica,0));
         pinky  = new Ghost( this, "pinky.png",new IntelFraca(logica,3));
         clyde  = new Ghost( this, "clyde.png",new IntelFraca2(logica,1));
 
@@ -97,7 +97,8 @@ public final class Maze extends JPanel {
                 }
             }
         });
-        checkCollision();
+       
+       // checkCollision();
         repaint();
     }
 
@@ -205,19 +206,28 @@ public final class Maze extends JPanel {
     }
 
     public void checkCollision() {
-        if (pinky.deadly && (pinky.getCol() == pacman.getCol()) && (pinky.getRow() == pacman.getRow())) {
-            System.out.println("Pacman eaten by Pinky!");
-            loseLife();
-        } else if (inky.deadly && (inky.getCol() == pacman.getCol()) && (inky.getRow() == pacman.getRow())) {
-            System.out.println("Pacman eaten by Inky!");
-            loseLife();
-        } else if (blinky.deadly && (blinky.getCol() == pacman.getCol()) && (blinky.getRow() == pacman.getRow())) {
-            System.out.println("Pacman eaten by Blinky!");
-            loseLife();
-        } else if (clyde.deadly && (clyde.getCol() == pacman.getCol()) && (clyde.getRow() == pacman.getRow())) {
-            System.out.println("Pacman eaten by Clyde!");
-            loseLife();
+//        if (pinky.deadly && (pinky.getCol() == pacman.getCol()) && (pinky.getRow() == pacman.getRow())) {
+//            System.out.println("Pacman eaten by Pinky!");
+//            loseLife();
+//        } else if (inky.deadly && (inky.getCol() == pacman.getCol()) && (inky.getRow() == pacman.getRow())) {
+//            System.out.println("Pacman eaten by Inky!");
+//            loseLife();
+//        } else if (blinky.deadly && (blinky.getCol() == pacman.getCol()) && (blinky.getRow() == pacman.getRow())) {
+//            System.out.println("Pacman eaten by Blinky!");
+//            loseLife();
+//        } else if (clyde.deadly && (clyde.getCol() == pacman.getCol()) && (clyde.getRow() == pacman.getRow())) {
+//            System.out.println("Pacman eaten by Clyde!");
+//            loseLife();
+//        }
+        
+        
+        if(logica.colisao() || verificaTroca(blinky.getMov(),pacman.getMov()) || verificaTroca(pinky.getMov(),pacman.getMov())
+                || verificaTroca(inky.getMov(),pacman.getMov()) || verificaTroca(clyde.getMov(),pacman.getMov()))
+        {
+             loseLife();
         }
+        
+        
     }
 
     public void loseLife() {
@@ -233,5 +243,14 @@ public final class Maze extends JPanel {
             pacman.endgame();
             System.out.println("Game Over!");
         }
+    }
+    
+    public boolean verificaTroca(Movimento mov1,Movimento mov2)
+    {
+        if(mov1.getX1()==mov2.getX2() && mov1.getY1()==mov2.getY2() && mov1.getX2()== mov2.getX1() && mov1.getY2()==mov2.getY1())
+        {
+            return true;
+        }
+        return false;
     }
 }
