@@ -17,36 +17,27 @@ public class Ghost extends Thread {
     private static final String IMAGE_SOURCE        = "src/pacman/img/";
     int                         edibleLifetime      = 10;
     boolean                     isRunning           = true;
- //   Random                      randGen             = new Random();
     int                         edibleLifeRemaining = edibleLifetime;
     boolean                     deadly              = true;
-    Cell[][]                    cells;
-  //  private char                direction;
+    Cell[][]                    cells;  
     private Image               ghostPicIcon;
     private int                 ghostRow, ghostCol;
     private int                 pastRow,pastCol;
     Movimento mov;
     Maze                        maze;
     final int CELL=20;
-    
     Inteligencia intel;
-    
-    
     int sleep;
 
-    public Ghost(Maze startMaze, String ghostGraphic ,Inteligencia intel) {
+    public Ghost(Maze startMaze, String ghostGraphic ,Inteligencia intel) 
+    {
         
         this.intel = intel;
-        
-//        ghostRow = initialRow;
-//        ghostCol = initialColumn;
         mov = new Movimento();
         ghostRow = intel.getX();
         ghostCol = intel.getY();
         sleep = intel.getSleep();
         maze     = startMaze;
-
-        // livesLeft = lives;
         cells        = maze.getCells();
         ghostPicIcon = Toolkit.getDefaultToolkit().getImage(IMAGE_SOURCE + ghostGraphic);
     }
@@ -55,18 +46,12 @@ public class Ghost extends Thread {
         g.drawImage(ghostPicIcon, ghostRow * CELL, ghostCol * CELL, maze);
     }
 
-    /*
-     * Get the current row
-     *
-     */
+    
     public int getRow() {
         return intel.getX();
     }
 
-    /*
-     * Get the current column
-     *
-     */
+   
     public int getCol() {
         return intel.getY();
     }
@@ -76,34 +61,7 @@ public class Ghost extends Thread {
         return mov;
     }
 
-    /*
-     * Move horizontally
-     *
-     */
-//    protected void moveRow(int x) {
-//        if (isCellNavigable(ghostCol, ghostRow + x)) {
-//            ghostRow = ghostRow + x;
-//        }
-//    }
-
-    /*
-     * Move vertically
-     *
-     */
-//    protected void moveCol(int y) {
-//        if (isCellNavigable(ghostCol + y, ghostRow)) {
-//            ghostCol = ghostCol + y;
-//        }
-//    }
-
-    /*
-     * Set direction
-     *
-     */
-//    public void setDirection(char direction) {
-//        this.direction = direction;
-//    }
-
+    
     /*
      * Run method
      */
@@ -120,8 +78,6 @@ public class Ghost extends Thread {
                 }
             }
 
-            
-            
             pastRow = ghostRow;
             pastCol = ghostCol;
             intel.proximoMovimento();
@@ -143,15 +99,6 @@ public class Ghost extends Thread {
             }
         }
     }
-
-    /*
-     * Check whether a cell is navigable
-     *
-     */
-//    public boolean isCellNavigable(int column, int row) {
-//        return ((cells[column][row].getType() == 'o') || (cells[column][row].getType() == 'd')
-//                || (cells[column][row].getType() == 'p'));
-//    }
 
     protected void endgame() {
         this.isRunning = false;

@@ -10,13 +10,10 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-
 import java.io.File;
 import java.io.FileNotFoundException;
-
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import javax.swing.JPanel;
 import prolog.Logica;
 
@@ -30,12 +27,8 @@ public final class Maze extends JPanel {
     Logica logica = new Logica();
     
     final static int CELL                = 20;
-//    private final int      ghostInitialColumn  =16;//= 13;
-//    private final int      ghostInitialRow     =16;//= 21;
     private int      lives               = 1;
     private final String   map                 = "src/pacman/levels/level2.txt/";
-//    private final int      pacmanInitialColumn =  7;
-//    private final int      pacmanInitialRow    =  21;
     private final int      score               = 0;
     private final Ghost    blinky;
     private Cell[][] cells;
@@ -46,15 +39,13 @@ public final class Maze extends JPanel {
     private int      tileHeight;
     private int      tileWidth;
    
-
-    public Maze() {
+    public Maze() 
+    {
         createCellArray(map);
         setPreferredSize(new Dimension(CELL * tileWidth, CELL * tileHeight));
         pacman = new Pacman(this, 3,logica);
-
         inky   = new Ghost(this, "inky.png",new IntelForte(logica,2,130));
         blinky = new Ghost( this, "blinky.png", new IntelForte(logica,0,130));
-
         pinky  = new Ghost( this, "pinky.png",new IntelFraca(logica,3));
         clyde  = new Ghost( this, "clyde.png",new IntelFraca2(logica,1));
 
@@ -100,7 +91,7 @@ public final class Maze extends JPanel {
             }
         });
        
-       // checkCollision();
+        //checkCollision();
         repaint();
     }
 
@@ -176,6 +167,7 @@ public final class Maze extends JPanel {
         }
 
         // Pacman.drawScore(g);
+        checkCollision();
         pacman.drawPacman(g);
         inky.drawGhost(g);
         blinky.drawGhost(g);

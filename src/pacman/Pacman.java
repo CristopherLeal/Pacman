@@ -14,8 +14,7 @@ import prolog.Logica;
 
 public class Pacman extends Thread {
     
-    //path das imagens
-    
+    //path das imagens  
     private static final String IMAGE_SOURCE     = "src/pacman/img/";
     static String[]             pacmanSequencesL = { IMAGE_SOURCE + "pac32_left.png", IMAGE_SOURCE + "pac32_left_wide.png",
             IMAGE_SOURCE + "pac32_left_widest.png", IMAGE_SOURCE + "pacman_closed.png" };
@@ -26,46 +25,32 @@ public class Pacman extends Thread {
     static String[] pacmanSequencesD = { IMAGE_SOURCE + "pac32_down.png", IMAGE_SOURCE + "pac32_down_wide.png",
             IMAGE_SOURCE + "pac32_down_widest.png", IMAGE_SOURCE + "pacman_closed.png" };
     int current = 0;
-
-    // don't move until told
+    // direcao inicial invalida
     private char   direction     = 'x';
     boolean        isRunning     = true;
-    int            score         = 0;
-    
+    int            score         = 0;   
     //Arrays de imagens
     Image[]        pictureUp     = new Image[pacmanSequencesU.length];
     Image[]        pictureRight  = new Image[pacmanSequencesR.length];
     Image[]        pictureLeft   = new Image[pacmanSequencesL.length];
     Image[]        pictureDown   = new Image[pacmanSequencesD.length];
-    
-    //?
-    int            totalPictures = 0;
-    
+    int            totalPictures = 0;   
     //Celudas do visual
     final int CELL=20;
     Cell[][]       cells;
     int            livesLeft;
-    
-    //labirinto
     Maze           maze;
     private int    pacmanRow, pacmanCol;
     private int    pastRow,pastCol;
-    private Movimento mov;
-    
+    private Movimento mov;   
     private String score_string;
     Thread         thread;
-    
-    //inteligencia
     Logica logica;
 
-    // int pause = 200;
     public Pacman( Maze startMaze, int lives,Logica inte) {
         
         this.logica = inte;
-        mov = new Movimento();
-        
-   
-        
+        mov = new Movimento();     
         maze      = startMaze;
         livesLeft = lives;
         cells     = maze.getCells();
@@ -89,10 +74,7 @@ public class Pacman extends Thread {
         }
     }
 
-    /*
-     * Draw Pacman
-     *
-     */
+    
     public void drawPacman(Graphics g) {
         
         int row = getRow();
@@ -134,11 +116,9 @@ public class Pacman extends Thread {
         current++;
     }
 
-    /*
-     * Get the current row
-     *
-     */
-    protected int getRow() {
+    
+    private int getRow() 
+    {
         try
         {
             return logica.pacmanX();
@@ -150,11 +130,9 @@ public class Pacman extends Thread {
         }
     }
 
-    /*
-     * Get the current column
-     *
-     */
-    protected int getCol() {
+
+    private int getCol() 
+    {
         try
         {
         return logica.pacmanY();
@@ -172,31 +150,9 @@ public class Pacman extends Thread {
     }
     
     
-    /*
-     * Move horizontally
-     *
-     */
-//    protected void moveRow(int x) {
-//       if (isCellNavigable(pacmanCol, pacmanRow + x)) {
-//            pacmanRow = pacmanRow + x;
-//        }
-//    }
-
-    /*
-     * Move vertically
-     *
-     */
-//    protected void moveCol(int y) {
-//        if (isCellNavigable(pacmanCol + y, pacmanRow)) {
-//            pacmanCol = pacmanCol + y;
-//        }
-//    }
-
-    /*
-     * Set direction
-     *
-     */
-    public void setDirection(char direction) {
+   
+    public void setDirection(char direction) 
+    {
         this.direction = direction;
     }
 
@@ -214,23 +170,23 @@ public class Pacman extends Thread {
            pastCol = logica.pacmanY();
            
            
-            if (direction == 'u') {
-                //moveCol(-1);
+            if (direction == 'u') 
+            {
                  logica.up();
             }
 
-            if (direction == 'd') {
-                //moveCol(1);
+            if (direction == 'd') 
+            {
                 logica.down();
             }
 
-            if (direction == 'l') {
-                //moveRow(-1);
+            if (direction == 'l') 
+            {
                 logica.left();
             }
 
-            if (direction == 'r') {
-                //moveRow(1);
+            if (direction == 'r') 
+            {
                 logica.right();
             }
 
@@ -268,11 +224,19 @@ public class Pacman extends Thread {
      * Check if next move will be pellet Detect Collision and "eat pellet"
      *
      */
-    public void eatPellet(int column, int row) {
+    public void eatPellet(int column, int row) 
+    {
+        boolean terminou = true;
         if (cells[column][row].getType() == 'd') {
             score                   += 10;
             cells[column][row].type = 'o';
             PacmanGUI.newDisp();
+            terminou = false;
+        }
+        
+        if (terminou)
+        {
+            System.out.println("Win");
         }
 
         if (cells[column][row].getType() == 'p') {
@@ -283,40 +247,10 @@ public class Pacman extends Thread {
         }
     }
 
-    /*
-     * Move Pacman
-     *
-     */
-//    public void movePacman(int x, int y) {
-//        pacmanRow = pacmanRow + x;
-//        pacmanCol = pacmanCol + y;
-//        current++;
-//        System.out.println("ROW " + pacmanRow + ", COL " + pacmanCol);    // print out current row and column to console
-//    }
-
-    /*
-     * Check whether a cell is navigable
-     *
-     */
-//    public boolean isCellNavigable(int column, int row) {
-////        return ((cells[column][row].getType() == 'o') || (cells[column][row].getType() == 'd')
-////                || (cells[column][row].getType() == 'p'));
-//        
-//        return i.posicao(row,column);
-//    }
-
-    /*
-     * Get the current score
-     *
-     */
     public int getScore() {
         return score;
     }
 
-    /*
-     * Get number of lives left
-     *
-     */
     public int getLives() {
         return livesLeft;
     }

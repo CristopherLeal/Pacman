@@ -6,6 +6,9 @@
 
 package pacman;
 
+import java.applet.Applet;
+import java.applet.AudioClip;
+import java.io.File;
 import java.util.Collections;
 import java.util.List;
 import javax.swing.SwingUtilities;
@@ -30,6 +33,15 @@ public class Main {
             new PacmanGUI().startGUI();
         };
         SwingUtilities.invokeLater(r);
+        
+        
+//        try {    
+//                AudioClip clip = Applet.newAudioClip(new File("C:\\som.wav").toURL());    
+//                clip.play();    
+//            } catch (MalformedURLException ex) {    
+//                ex.printStackTrace();    
+//            }   
+        
          
       //  Logica l = new Logica();
 //        List <Position> lista = l.movimentosPosiveis(2, 2);

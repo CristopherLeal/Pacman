@@ -37,15 +37,6 @@ public class IntelFraca2 implements Inteligencia {
 
      
     
-//    IntelFraca(Logica logica,int X,int Y)
-//    {
-//        this.logica=logica;
-//        x=X;
-//        y=Y;
-//        iter=0;
-//        pos= logica.getPath2(x , y);
-//    }
-    
     @Override
     public void proximoMovimento() 
     {
@@ -81,12 +72,7 @@ public class IntelFraca2 implements Inteligencia {
             iter++;
             
         }
-        //Para a inteligencia solvente, a atualizacao de 10 está boa
-        //if(iter==pos.size()||iter>14){
-            //iter=0;
-            //pos=logica.getPath(x , y);
-        //}
-        //Para as outras inteligências, melhor não atualizar, somente quando ele chegar
+       
         if(iter==pos.size()-1){
             iter=0;
             pos=logica.getPath3(x , y);
