@@ -24,7 +24,7 @@ public class Intel1 implements Inteligencia {
     private Logica logica;
     List<Position> pos;
     //importante que todos tenham a mesma instancia da logica
-    Intel1(Logica logica,int codGhost)
+    Intel1(Logica logica,int codGhost, int sleep)
     {
         this.logica=logica;
         this.codGhost = codGhost;
@@ -32,7 +32,7 @@ public class Intel1 implements Inteligencia {
         y=logica.FantasmaY(codGhost);      
         iter=0;
         pos= logica.getPath(x , y);
-        sleep = 130;
+        this.sleep = sleep;
     }
     
 //    Intel1(Logica logica,int X,int Y)
