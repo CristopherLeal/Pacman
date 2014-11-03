@@ -12,8 +12,11 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JPanel;
 import prolog.Logica;
 
@@ -38,8 +41,8 @@ public final class Maze extends JPanel {
     private final Ghost    pinky;
     private int      tileHeight;
     private int      tileWidth;
-   
-    public Maze() 
+    private Sounds sound;
+    public Maze() throws UnsupportedAudioFileException, LineUnavailableException, IOException 
     {
         createCellArray(map);
         setPreferredSize(new Dimension(CELL * tileWidth, CELL * tileHeight));
@@ -55,7 +58,9 @@ public final class Maze extends JPanel {
         pinky.start();
         clyde.start();
         pacman.start();
-
+        
+        sound = new Sounds();
+        //sound.newGame();
         /*
          * Key Listeners
          */
@@ -200,22 +205,17 @@ public final class Maze extends JPanel {
     }
 
     public void checkCollision() {
-
-        
         
         if(logica.colisao() || verificaTroca(blinky.getMov(),pacman.getMov()) || verificaTroca(pinky.getMov(),pacman.getMov())
                 || verificaTroca(inky.getMov(),pacman.getMov()) || verificaTroca(clyde.getMov(),pacman.getMov()))
         {
              loseLife();
         }
-        
-
-        
     }
 
     public void loseLife() {
         lives--;
-        PacmanGUI.newDisp();    // TODO - This doesn't appear to update lives
+        PacmanGUI.newDisp();
 
         // TODO - Need to integrate an actual death.
         if (lives <= 0) {
