@@ -11,24 +11,24 @@ package pacman;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
-
 import java.util.Random;
 
 public class Ghost extends Thread {
     private static final String IMAGE_SOURCE        = "src/pacman/img/";
     int                         edibleLifetime      = 10;
     boolean                     isRunning           = true;
-    Random                      randGen             = new Random();
+ //   Random                      randGen             = new Random();
     int                         edibleLifeRemaining = edibleLifetime;
     boolean                     deadly              = true;
     Cell[][]                    cells;
-    private char                direction;
+  //  private char                direction;
     private Image               ghostPicIcon;
     private int                 ghostRow, ghostCol;
     Maze                        maze;
     final int CELL=20;
     
     Inteligencia intel;
+    int sleep;
 
     public Ghost(Maze startMaze, String ghostGraphic ,Inteligencia intel) {
         
@@ -39,7 +39,7 @@ public class Ghost extends Thread {
         
         ghostRow = intel.getX();
         ghostCol = intel.getY();
-        
+        sleep = intel.getSleep();
         maze     = startMaze;
 
         // livesLeft = lives;
@@ -71,29 +71,29 @@ public class Ghost extends Thread {
      * Move horizontally
      *
      */
-    protected void moveRow(int x) {
-        if (isCellNavigable(ghostCol, ghostRow + x)) {
-            ghostRow = ghostRow + x;
-        }
-    }
+//    protected void moveRow(int x) {
+//        if (isCellNavigable(ghostCol, ghostRow + x)) {
+//            ghostRow = ghostRow + x;
+//        }
+//    }
 
     /*
      * Move vertically
      *
      */
-    protected void moveCol(int y) {
-        if (isCellNavigable(ghostCol + y, ghostRow)) {
-            ghostCol = ghostCol + y;
-        }
-    }
+//    protected void moveCol(int y) {
+//        if (isCellNavigable(ghostCol + y, ghostRow)) {
+//            ghostCol = ghostCol + y;
+//        }
+//    }
 
     /*
      * Set direction
      *
      */
-    public void setDirection(char direction) {
-        this.direction = direction;
-    }
+//    public void setDirection(char direction) {
+//        this.direction = direction;
+//    }
 
     /*
      * Run method
@@ -119,7 +119,7 @@ public class Ghost extends Thread {
             maze.repaint();
 
             try {
-                Thread.sleep(200);
+                Thread.sleep(sleep);
             } catch (InterruptedException e) {
                 System.err.println(e);
             }
@@ -130,10 +130,10 @@ public class Ghost extends Thread {
      * Check whether a cell is navigable
      *
      */
-    public boolean isCellNavigable(int column, int row) {
-        return ((cells[column][row].getType() == 'o') || (cells[column][row].getType() == 'd')
-                || (cells[column][row].getType() == 'p'));
-    }
+//    public boolean isCellNavigable(int column, int row) {
+//        return ((cells[column][row].getType() == 'o') || (cells[column][row].getType() == 'd')
+//                || (cells[column][row].getType() == 'p'));
+//    }
 
     protected void endgame() {
         this.isRunning = false;
