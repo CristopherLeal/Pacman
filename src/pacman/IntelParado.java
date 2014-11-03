@@ -24,7 +24,12 @@ public class IntelParado implements Inteligencia
        this.y=y;
        logica.matarFantasma(codGhost);
    }
-   
+   public IntelParado(Logica logica,int codGhost)
+   {
+       this.x=0;
+       this.y=0;
+       logica.matarFantasma(codGhost);
+   }
     @Override
     public int getX() {
         return x;

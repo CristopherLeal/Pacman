@@ -254,10 +254,18 @@ public final class Maze extends JPanel {
         
         if(mortal && logica.colisao())
         {
-            blinky.matarFantasma(1,0,0);
+          /*blinky.matarFantasma(1,0,0);
             inky.matarFantasma(2,0,2);
             pinky.matarFantasma(3,0,3);
-            clyde.matarFantasma(4,0,1);
+            clyde.matarFantasma(4,0,1);*/
+            if(logica.colisao1())
+              blinky.matarFantasma(0);
+            if(logica.colisao2())
+              inky.matarFantasma(2);
+            if(logica.colisao3())
+              clyde.matarFantasma(1);
+            if(logica.colisao4())
+              pinky.matarFantasma(3);
             return true;
         }
         if(!mortal && (logica.colisao() || verificaTroca(blinky.getMov(),pacman.getMov()) || verificaTroca(pinky.getMov(),pacman.getMov())

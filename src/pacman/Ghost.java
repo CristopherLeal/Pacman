@@ -128,7 +128,11 @@ public class Ghost extends Thread {
         intel = new IntelParado(maze.logica,x,y,codGhost);
         ghostPicIcon=null;
     }
-
+    public void matarFantasma(int codGhost)
+    {
+        intel = new IntelParado(maze.logica,codGhost);
+        ghostPicIcon=null;
+    }
     protected void endgame() {
         this.isRunning = false;
     }

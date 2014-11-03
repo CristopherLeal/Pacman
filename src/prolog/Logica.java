@@ -375,4 +375,24 @@ public class Logica {
         Query q = new Query("colisao");
         return q.hasSolution();
     }
+    public boolean colisao1()
+    {
+        Query q = new Query("colisao1");
+        return q.hasSolution();
+    }
+    public boolean colisao2()
+    {
+        Query q = new Query("colisao2");
+        return q.hasSolution();
+    }
+    public boolean colisao3()
+    {
+        Query q = new Query("colisao3");
+        return q.hasSolution();
+    }
+    public boolean colisao4()
+    {
+        Query q = new Query("colisao4");
+        return q.hasSolution();
+    }
 }

@@ -8,6 +8,7 @@
 
 
 %%posicoes que podem ser percorridas no labirinto
+pos(0,0).
 pos(2,2).
 pos(3,2).
 pos(4,2).
@@ -414,6 +415,11 @@ colisao:-pacman(X,Y,_),blinky(X,Y).
 colisao:-pacman(X,Y,_),inky(X,Y).
 colisao:-pacman(X,Y,_),clyde(X,Y).
 colisao:-pacman(X,Y,_),pinky(X,Y).
+
+colisao1:-pacman(X,Y,_),blinky(X,Y).
+colisao2:-pacman(X,Y,_),inky(X,Y).
+colisao3:-pacman(X,Y,_),clyde(X,Y).
+colisao4:-pacman(X,Y,_),pinky(X,Y).
 
 matarBlinky:-(retract(blinky(X1,Y1)),assert(blinky(0,0))).
 matarInky:-(retract(inky(X1,Y1)),assert(inky(0,0))).
