@@ -339,6 +339,7 @@ right:- pacman(X1,Y1,Z1),portal(pos(X1,Y1),pos(X2,Y2),dir),retract(pacman(X1,Y1,
 
 comeu:- pacman(X,Y,_),fruit(X,Y),retract(fruit(X,Y)).
 
+
 %inteligencia do fantasma 1
 
 solvente(X1,Y1,X2,Y2,Solution):- search([],pos(X1,Y1), pos(X2,Y2), Solution).
@@ -407,3 +408,9 @@ comerBlinky :- pacman(X,Y,_),blinky(X,Y),retract(blinky(X,Y)),assert(blinky(19,1
 comerClyde :- pacman(X,Y,_),clyde(X,Y),retract(clyde(X,Y)),assert(clyde(19,19)),retract(podeComerClyde).
 comerInky :- pacman(X,Y,_),inky(X,Y),retract(inky(X,Y)),assert(inky(16,16)),retract(podeComerInky).
 comerPink :- pacman(X,Y,_),pink(X,Y),retract(pink(X,Y)),assert(pink(16,19)),retract(podeComerPinky).
+
+cBlinky :- pacman(X,Y,_),blinky(X,Y).
+cClyde :- pacman(X,Y,_),clyde(X,Y).
+cInky :- pacman(X,Y,_),inky(X,Y).
+cPinky :- pacman(X,Y,_),pinky(X,Y).
+

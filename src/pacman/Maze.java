@@ -205,7 +205,7 @@ public final class Maze extends JPanel {
     }
 
     public void checkCollision() {
-        if (pinky.deadly && (pinky.getCol() == pacman.getCol()) && (pinky.getRow() == pacman.getRow())) {
+        /*if (pinky.deadly && (pinky.getCol() == pacman.getCol()) && (pinky.getRow() == pacman.getRow())) {
             System.out.println("Pacman eaten by Pinky!");
             loseLife();
         } else if (inky.deadly && (inky.getCol() == pacman.getCol()) && (inky.getRow() == pacman.getRow())) {
@@ -217,7 +217,22 @@ public final class Maze extends JPanel {
         } else if (clyde.deadly && (clyde.getCol() == pacman.getCol()) && (clyde.getRow() == pacman.getRow())) {
             System.out.println("Pacman eaten by Clyde!");
             loseLife();
-        }
+        }*/
+        
+        if(logica.fanstasmaComeu("cBlinky")){
+            System.out.println("Pacman eaten by Blinky!");
+            loseLife();
+        } else if (logica.fanstasmaComeu("cClyde")){
+            System.out.println("Pacman eaten by Clyde!");
+            loseLife();
+        } else if (logica.fanstasmaComeu("cInky")){
+            System.out.println("Pacman eaten by Inky!");
+            loseLife();
+        } else if (logica.fanstasmaComeu("cPinky")){
+            System.out.println("Pacman eaten by Pink!");
+            loseLife();
+        } 
+        
     }
 
     public void loseLife() {
