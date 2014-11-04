@@ -26,7 +26,7 @@ public class Cell {
     final int ESP = 6;
     protected char type;
     protected int x,y;
-    private Toolkit kit = Toolkit.getDefaultToolkit();
+    private final Toolkit kit = Toolkit.getDefaultToolkit();
     
     public Cell(int x, int y, char type){
         this.type = type;

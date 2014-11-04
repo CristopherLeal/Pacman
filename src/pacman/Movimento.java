@@ -5,8 +5,6 @@
  */
 package pacman;
 
-import java.util.logging.Logger;
-
 /**
  *
  * @author cristopher

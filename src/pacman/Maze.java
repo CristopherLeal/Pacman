@@ -20,8 +20,6 @@ import java.util.ArrayList;
 import java.util.Queue;
 import java.util.Scanner;
 import java.util.concurrent.ArrayBlockingQueue;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JPanel;
 
 import prolog.Logica;
@@ -50,14 +48,17 @@ public final class Maze extends JPanel {
     private int      tileWidth;
     public boolean mortal;
     public boolean ganhou;
-    private Sounds sound;
-    private Queue<Ghost> deadList  = new ArrayBlockingQueue<Ghost>(4);
+    private final Queue<Ghost> deadList  = new ArrayBlockingQueue<>(4);
     private int contador=0;
     private boolean turbo=false;
     private int sleepTurbo=30;
     private int sleepNormal=130;
     
-    public Maze() throws UnsupportedAudioFileException, LineUnavailableException, IOException 
+    /**
+     *
+     * @throws IOException
+     */
+    public Maze() throws IOException 
 
     {
         ganhou = false;
@@ -70,29 +71,21 @@ public final class Maze extends JPanel {
         pinky  = new Ghost(3, this, "pinky.png",new IntelFraca(logica,3,130),new IntelFraca2(logica,3));
         clyde  = new Ghost(1, this, "clyde.png",new IntelFraca(logica,1,130),new IntelFraca2(logica,1));
 
-        // Start ghosts first
                 
         clyde.matarFantasma();
         inky.matarFantasma();
         pinky.matarFantasma();
-       // blinky.matarFantasma();
       
         deadList.add(inky);
         deadList.add(pinky);
           deadList.add(clyde);
-       // deadList.add(blinky);
         
         inky.start();
         blinky.start();
         pinky.start();
         clyde.start();
         pacman.start();
-        
-        sound = new Sounds();
-        //sound.newGame();
-        /*
-         * Key Listeners
-         */
+
         this.setFocusable(true);
         this.addKeyListener(new KeyAdapter() {
             @Override
@@ -340,10 +333,6 @@ public final class Maze extends JPanel {
     
     public boolean verificaTroca(Movimento mov1,Movimento mov2)
     {
-        if(mov1.getX1()==mov2.getX2() && mov1.getY1()==mov2.getY2() && mov1.getX2()== mov2.getX1() && mov1.getY2()==mov2.getY1())
-        {
-            return true;
-        }
-        return false;
+        return mov1.getX1()==mov2.getX2() && mov1.getY1()==mov2.getY2() && mov1.getX2()== mov2.getX1() && mov1.getY2()==mov2.getY1();
     }
 }

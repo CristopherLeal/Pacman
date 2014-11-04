@@ -51,7 +51,7 @@ public class Sounds {
             audioIn = AudioSystem.getAudioInputStream(url);
             pacmandies = AudioSystem.getClip();
             pacmandies.open(audioIn);
-        } catch(Exception e){}
+        } catch(IOException | LineUnavailableException | UnsupportedAudioFileException e){}
     }
     
     public void nomMon(){

@@ -13,25 +13,25 @@ import java.awt.Toolkit;
 public class Ghost extends Thread 
 {
     private static final String IMAGE_SOURCE        = "src/pacman/img/";
-    private int                 edibleLifetime      = 10;
+    private final int                 edibleLifetime      = 10;
     private boolean             isRunning           = true;
     private int                 edibleLifeRemaining = edibleLifetime;
     private boolean             deadly              = true;
-    private Cell[][]            cells;  
+    private final Cell[][]            cells;  
     private Image               ghostPicIcon;
-    private String              ghostGraphic;
+    private final String              ghostGraphic;
     private int                 ghostRow, ghostCol;
     private int                 pastRow,pastCol;
-    private Movimento           mov;
-    private Maze                maze;
+    private final Movimento           mov;
+    private final Maze                maze;
     private final int           CELL=20;
-    private Inteligencia        stupid;
-    private Inteligencia        smart;
+    private final Inteligencia        stupid;
+    private final Inteligencia        smart;
     private Inteligencia        intel;
     private boolean             mortal;
     private boolean             dead;
-    private int                 sleep;
-    private int codGhost;
+    private final int                 sleep;
+    private final int codGhost;
 
     public Ghost(int ghostCod ,Maze startMaze, String ghostGraphic ,Inteligencia smart,Inteligencia stupid) 
     {

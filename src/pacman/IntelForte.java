@@ -19,9 +19,9 @@ public class IntelForte implements Inteligencia {
     private int x;
     private int y;
     private int iter;
-    private int codGhost;
-    private int sleep;
-    private Logica logica;
+    private final int codGhost;
+    private final int sleep;
+    private final Logica logica;
     List<Position> pos;
     //importante que todos tenham a mesma instancia da logica
 

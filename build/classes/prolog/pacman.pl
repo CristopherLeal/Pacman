@@ -373,13 +373,6 @@ travel(pos(X1,Y1),pos(X2,Y2),P,[pos(X2,Y2)|P]) :-mov(X1,Y1,X2,Y2).
 travel(pos(X1,Y1),pos(X2,Y2),Visited,Path) :- mov(X1,Y1,X,Y), pos(X,Y) \== pos(X2,Y2), 
 \+member(pos(X,Y),Visited), travel(pos(X,Y),pos(X2,Y2),[pos(X,Y)|Visited],Path).
 
-%% movimento dos fantasmas
-
-% quando o jogo comeca ou fantasma morre
-%%blinky(19,16).
-%%clyde(19,19).
-%%inky(16,16).
-%%pinky(16,19).
 
 % executa os movimentos de cada fantasma
 
@@ -403,19 +396,6 @@ leftPinky:-pinky(X1,Y1),pos(X1,Y1), X2 is X1-1 , Y2 is Y1 , pos(X2,Y2),retract(p
 upPinky:-pinky(X1,Y1),pos(X1,Y1), X2 is X1 , Y2 is Y1-1 , pos(X2,Y2),retract(pinky(X1,Y1)),assert(pinky(X2,Y2)).
 downPinky:-pinky(X1,Y1),pos(X1,Y1), X2 is X1 , Y2 is Y1+1 , pos(X2,Y2),retract(pinky(X1,Y1)),assert(pinky(X2,Y2)).
 
-
-% quando o pacman come o fantasma
-comerBlinky :- pacman(X,Y,_),blinky(X,Y),retract(blinky(X,Y)),assert(blinky(19,16)),retract(podeComerBlinky).
-comerClyde :- pacman(X,Y,_),clyde(X,Y),retract(clyde(X,Y)),assert(clyde(19,19)),retract(podeComerClyde).
-comerInky :- pacman(X,Y,_),inky(X,Y),retract(inky(X,Y)),assert(inky(16,16)),retract(podeComerInky).
-comerPink :- pacman(X,Y,_),pink(X,Y),retract(pink(X,Y)),assert(pink(16,19)),retract(podeComerPinky).
-
-
-colisao:-pacman(X,Y,_),blinky(X,Y).
-colisao:-pacman(X,Y,_),inky(X,Y).
-colisao:-pacman(X,Y,_),clyde(X,Y).
-colisao:-pacman(X,Y,_),pinky(X,Y).
-
 colisao1:-pacman(X,Y,_),blinky(X,Y).
 colisao2:-pacman(X,Y,_),inky(X,Y).
 colisao3:-pacman(X,Y,_),clyde(X,Y).
@@ -435,3 +415,9 @@ criarBlinky:-(retract(blinky(_,_)),assert(blinky(12,14))).
 criarInky:-(retract(inky(_,_)),assert(inky(12,14))).
 criarPinky:-(retract(pinky(_,_)),assert(pinky(12,14))).
 criarClyde:-(retract(clyde(_,_)),assert(clyde(12,14))).
+
+
+colisao:-pacman(X,Y,_),blinky(X,Y).
+colisao:-pacman(X,Y,_),inky(X,Y).
+colisao:-pacman(X,Y,_),clyde(X,Y).
+colisao:-pacman(X,Y,_),pinky(X,Y).

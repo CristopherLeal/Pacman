@@ -49,12 +49,12 @@ public class Pacman extends Thread {
     Maze           maze;
     private int    pacmanRow, pacmanCol;
     private int    pastRow,pastCol;
-    private Movimento mov;   
+    private final Movimento mov;   
     private String score_string;
     Thread         thread;
     Logica logica;
     private int timer=0;
-    private int intervaloMortal = 50;
+    private final int intervaloMortal = 50;
     private int sleep;
     
     

@@ -5,7 +5,6 @@
  */
 package pacman;
 
-import java.util.Collections;
 import java.util.List;
 import prolog.Logica;
 import prolog.Position;
@@ -19,9 +18,9 @@ public class IntelFraca implements Inteligencia {
     private int x;
     private int y;
     private int iter;
-    private int codGhost;
-    private Logica logica;
-    private int sleep;
+    private final int codGhost;
+    private final Logica logica;
+    private final int sleep;
     List<Position> pos;
     
     //importante que todos tenham a mesma instancia da logica
