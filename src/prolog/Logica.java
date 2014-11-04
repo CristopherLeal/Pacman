@@ -128,55 +128,69 @@ public class Logica
         return result.get("X").toString();
     }
     public List<Position> getPath(int x, int y){
-        Pattern pattern= Pattern.compile("(\\d+)");
-        List<Position> posList= new ArrayList<>();
-        int X,Y = 0;
-        if(posicao(pacmanX(),pacmanY())){
-            String str=intelFant(x, y, pacmanX(), pacmanY(),"solvente");
-            Matcher matcher=pattern.matcher(str);
-            while(matcher.find()){
-            X=Integer.parseInt(matcher.group());
-              if(matcher.find()){
-                    Y=Integer.parseInt(matcher.group());
+        try{
+            Pattern pattern= Pattern.compile("(\\d+)");
+            List<Position> posList= new ArrayList<>();
+            int X,Y = 0;
+            if(posicao(pacmanX(),pacmanY())){
+                String str=intelFant(x, y, pacmanX(), pacmanY(),"solvente");
+                Matcher matcher=pattern.matcher(str);
+                while(matcher.find()){
+                X=Integer.parseInt(matcher.group());
+                  if(matcher.find()){
+                        Y=Integer.parseInt(matcher.group());
+                    }
+                    posList.add(new Position(X,Y));
                 }
-                posList.add(new Position(X,Y));
-            }
-        }    
-        return posList;
+            }    
+
+            return posList;
+        }
+        catch (NumberFormatException e){
+            return new ArrayList<>();
+        }
     }
     public List<Position> getPath2(int x, int y){
-        Pattern pattern= Pattern.compile("(\\d+)");
-        List<Position> posList= new ArrayList<>();
-        int X,Y = 0;
-        if(posicao(pacmanX(),pacmanY())){
-            String str=intelFant(x, y, pacmanX(), pacmanY(),"solve2");
-            Matcher matcher=pattern.matcher(str);
-            while(matcher.find()){
-            X=Integer.parseInt(matcher.group());
-              if(matcher.find()){
-                    Y=Integer.parseInt(matcher.group());
+        try{
+            Pattern pattern= Pattern.compile("(\\d+)");
+            List<Position> posList= new ArrayList<>();
+            int X,Y = 0;
+            if(posicao(pacmanX(),pacmanY())){
+                String str=intelFant(x, y, pacmanX(), pacmanY(),"solve2");
+                Matcher matcher=pattern.matcher(str);
+                while(matcher.find()){
+                X=Integer.parseInt(matcher.group());
+                  if(matcher.find()){
+                        Y=Integer.parseInt(matcher.group());
+                    }
+                    posList.add(new Position(X,Y));
                 }
-                posList.add(new Position(X,Y));
-            }
-        }    
-        return posList;
+            }    
+            return posList;
+        } catch(NumberFormatException ex){
+            return new ArrayList<>();
+        }
     }
     public List<Position> getPath3(int x, int y){
-        Pattern pattern= Pattern.compile("(\\d+)");
-        List<Position> posList= new ArrayList<>();
-        int X,Y = 0;
-        if(posicao(pacmanX(),pacmanY())){
-            String str=intelFant(x, y, pacmanX(), pacmanY(),"path");
-            Matcher matcher=pattern.matcher(str);
-            while(matcher.find()){
-            X=Integer.parseInt(matcher.group());
-              if(matcher.find()){
-                    Y=Integer.parseInt(matcher.group());
+        try{
+            Pattern pattern= Pattern.compile("(\\d+)");
+            List<Position> posList= new ArrayList<>();
+            int X,Y = 0;
+            if(posicao(pacmanX(),pacmanY())){
+                String str=intelFant(x, y, pacmanX(), pacmanY(),"path");
+                Matcher matcher=pattern.matcher(str);
+                while(matcher.find()){
+                X=Integer.parseInt(matcher.group());
+                  if(matcher.find()){
+                        Y=Integer.parseInt(matcher.group());
+                    }
+                    posList.add(new Position(X,Y));
                 }
-                posList.add(new Position(X,Y));
-            }
-        }    
-        return posList;
+            }    
+            return posList;
+        } catch(NumberFormatException ex){
+            return new ArrayList<>();
+        }
     }
     public Boolean comerFanstasmas(){
         Query q2 = new Query("comerFanstasmas");

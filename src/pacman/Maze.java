@@ -13,9 +13,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Queue;
 import java.util.Scanner;
+import java.util.Timer;
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
-
 import prolog.Logica;
 
 public final class Maze extends JPanel {
@@ -164,6 +166,7 @@ public final class Maze extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        Timer timer = new Timer(); 
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, tileWidth * CELL, tileHeight * CELL);
 
@@ -194,7 +197,13 @@ public final class Maze extends JPanel {
         }
 
        if( checkCollision() && !mortal)
-       {
+       {    
+            
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Maze.class.getName()).log(Level.SEVERE, null, ex);
+            }
             Toolkit kit = Toolkit.getDefaultToolkit();
             Image i = kit.getImage("src/img/large/game_over.png");
            g.drawImage(i, 40, 40, 520, 540,this);
@@ -207,6 +216,7 @@ public final class Maze extends JPanel {
         
         if(ganhou)
         {
+            
             Toolkit kit = Toolkit.getDefaultToolkit();
             Image i = kit.getImage("src/img/large/YouWin.PNG");
             g.drawImage(i, 40, 40, 520, 540,this);

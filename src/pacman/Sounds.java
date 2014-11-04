@@ -42,7 +42,7 @@ public class Sounds {
             nomMon = AudioSystem.getClip();
             nomMon.open(audioIn);
             
-            url = this.getClass().getClassLoader().getResource("src/pacman/sounds/openingsong.wav");
+            url = this.getClass().getClassLoader().getResource("src/pacman/sounds/opening song.wav");
             audioIn = AudioSystem.getAudioInputStream(url);
             openingsound = AudioSystem.getClip();
             openingsound.open(audioIn);
