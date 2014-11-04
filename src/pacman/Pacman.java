@@ -55,11 +55,12 @@ public class Pacman extends Thread {
     Logica logica;
     private int timer=0;
     private int intervaloMortal = 50;
+    private int sleep;
     
     
     public Pacman( Maze startMaze, int lives,Logica inte) {
 
-        
+        sleep=100;
         this.logica = inte;
         mov = new Movimento();     
         maze      = startMaze;
@@ -167,6 +168,11 @@ public class Pacman extends Thread {
         this.direction = direction;
     }
 
+    public void setSleep(int sleep)
+    {
+        this.sleep=sleep;
+    }
+    
     /*
      * Run method
      */
@@ -229,7 +235,7 @@ public class Pacman extends Thread {
                 maze.repaint();
                 
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(sleep);
                 } catch (InterruptedException e) {
                     System.err.println(e);
                 }
@@ -254,11 +260,11 @@ public class Pacman extends Thread {
               
         }
         
-        if (cells[column][row].getType() == 'p') {
+        if (cells[column][row].getType() == 'p' || cells[column][row].getType() == 'b') {
            
             score                   += 50;
             cells[column][row].type = 'o';
-            if(!maze.mortal)
+            if(!maze.mortal) 
                 maze.changeMortal();
             else
                 timer=0;

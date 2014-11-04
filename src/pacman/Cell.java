@@ -10,8 +10,10 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.Shape;
+import java.awt.Toolkit;
 import java.awt.geom.Ellipse2D;
 
 /**
@@ -24,6 +26,7 @@ public class Cell {
     final int ESP = 6;
     protected char type;
     protected int x,y;
+    private Toolkit kit = Toolkit.getDefaultToolkit();
     
     public Cell(int x, int y, char type){
         this.type = type;
@@ -41,7 +44,7 @@ public class Cell {
         
         switch(type){
             case 'h':
-                g.setColor(Color.green);
+                g.setColor(Color.BLUE);
                 g.fillRect(x*CELL, y*CELL + CELL/2 -3, CELL, ESP);
                 
                 break;
@@ -51,7 +54,7 @@ public class Cell {
 //                g.fillRect(x * CELL, y * CELL + CELL / 2 - 1, CELL, ESP);
             
             case 'v':
-                g.setColor(Color.green);
+                g.setColor(Color.BLUE);
                 g.fillRect(x * CELL + CELL / 2 - 3, y * CELL, ESP, CELL);
 
                 break;
@@ -94,13 +97,23 @@ public class Cell {
             break;
 
         case 'p' :    // navigable cell with power pellet
-            g.setColor(Color.PINK);
-            g.fillOval(x * CELL + CELL / 2 - 7, y * CELL + CELL / 2 - 7, 13, 13);
+
+             
+            Image i = kit.getImage("src/pacman/img/apple.png");
+             g.drawImage(i, x*CELL-7, y*CELL-5,30,30,null);
 
             break;
+            
+           case 'b' :    // navigable cell with power pellet
 
-        case 'x' :    // empty non-navigable cell
-        case 'g' :    // the Corral
+            
+            Image i2 = kit.getImage("src/pacman/img/banana.png");
+             g.drawImage(i2, x*CELL-7, y*CELL-5,30,30,null);
+
+            break;    
+
+//        case 'x' :    // empty non-navigable cell
+//        case 'g' :    // the Corral
         default :
             break;
         }
@@ -115,7 +128,7 @@ public class Cell {
         Rectangle  oldClip = g.getClipBounds();
 
         g2.setClip(x * CELL, y * CELL, CELL, CELL);
-        g2.setColor(Color.GREEN);
+        g2.setColor(Color.BLUE);
 
         Shape oval = new Ellipse2D.Double(xBase, yBase, CELL, CELL);
 

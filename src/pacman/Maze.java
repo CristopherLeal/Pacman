@@ -53,6 +53,9 @@ public final class Maze extends JPanel {
     private Sounds sound;
     private Queue<Ghost> deadList  = new ArrayBlockingQueue<Ghost>(4);
     private int contador=0;
+    private boolean turbo=false;
+    private int sleepTurbo=30;
+    private int sleepNormal=130;
     
     public Maze() throws UnsupportedAudioFileException, LineUnavailableException, IOException 
 
@@ -62,8 +65,8 @@ public final class Maze extends JPanel {
         createCellArray(map);
         setPreferredSize(new Dimension(CELL * tileWidth, CELL * tileHeight));
         pacman = new Pacman(this, 3,logica);
-        inky   = new Ghost(2,this, "inky.png",new IntelForte(logica,2,130),new IntelFraca2(logica,2));
-        blinky = new Ghost(0, this, "blinky.png",new IntelForte(logica,0,130), new IntelFraca2(logica,0));
+        inky   = new Ghost(2,this, "inky.png",new IntelForte(logica,2,100),new IntelFraca2(logica,2));
+        blinky = new Ghost(0, this, "blinky.png",new IntelForte(logica,0,100), new IntelFraca2(logica,0));
         pinky  = new Ghost(3, this, "pinky.png",new IntelFraca(logica,3,130),new IntelFraca2(logica,3));
         clyde  = new Ghost(1, this, "clyde.png",new IntelFraca(logica,1,130),new IntelFraca2(logica,1));
 
@@ -71,12 +74,13 @@ public final class Maze extends JPanel {
                 
         clyde.matarFantasma();
         inky.matarFantasma();
-       // pinky.matarFantasma();
-        blinky.matarFantasma();
-        deadList.add(clyde);
+        pinky.matarFantasma();
+       // blinky.matarFantasma();
+      
         deadList.add(inky);
-        //deadList.add(pinky);
-        deadList.add(blinky);
+        deadList.add(pinky);
+          deadList.add(clyde);
+       // deadList.add(blinky);
         
         inky.start();
         blinky.start();
@@ -115,6 +119,19 @@ public final class Maze extends JPanel {
                 case (KeyEvent.VK_KP_LEFT) :
                 case (KeyEvent.VK_LEFT) :
                     pacman.setDirection('l');
+                    break;
+                    
+                case (KeyEvent.VK_SPACE):
+                    if(!turbo)
+                    {
+                        turbo=true;
+                        pacman.setSleep(sleepTurbo);
+                    }
+                    else
+                    {
+                        turbo=false;
+                        pacman.setSleep(sleepNormal);
+                    }
 
                     break;
                 }
