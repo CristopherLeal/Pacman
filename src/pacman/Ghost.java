@@ -6,32 +6,31 @@
 
 package pacman;
 
-//~--- JDK imports ------------------------------------------------------------
-
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.util.Random;
 
-public class Ghost extends Thread {
+public class Ghost extends Thread 
+{
     private static final String IMAGE_SOURCE        = "src/pacman/img/";
-    int                         edibleLifetime      = 10;
-    boolean                     isRunning           = true;
-    int                         edibleLifeRemaining = edibleLifetime;
-    boolean                     deadly              = true;
-    Cell[][]                    cells;  
+    private int                 edibleLifetime      = 10;
+    private boolean             isRunning           = true;
+    private int                 edibleLifeRemaining = edibleLifetime;
+    private boolean             deadly              = true;
+    private Cell[][]            cells;  
     private Image               ghostPicIcon;
-    String ghostGraphic;
+    private String              ghostGraphic;
     private int                 ghostRow, ghostCol;
     private int                 pastRow,pastCol;
-    Movimento mov;
-    Maze                        maze;
-    final int CELL=20;
-    Inteligencia stupid;
-    Inteligencia smart;
-    Inteligencia intel;
-    boolean mortal;
-    int sleep;
+    private Movimento           mov;
+    private Maze                maze;
+    private final int           CELL=20;
+    private Inteligencia        stupid;
+    private Inteligencia        smart;
+    private Inteligencia        intel;
+    private boolean             mortal;
+    private boolean             dead;
+    private int                 sleep;
 
     public Ghost(Maze startMaze, String ghostGraphic ,Inteligencia smart,Inteligencia stupid) 
     {
@@ -39,6 +38,7 @@ public class Ghost extends Thread {
         this.stupid = stupid;
         this.intel = smart;
         mortal = false;
+        dead=false;
         mov = new Movimento();
         ghostRow = intel.getX();
         ghostCol = intel.getY();
@@ -49,16 +49,16 @@ public class Ghost extends Thread {
         ghostPicIcon = Toolkit.getDefaultToolkit().getImage(IMAGE_SOURCE + ghostGraphic);
     }
 
-    public void drawGhost(Graphics g) {
+    public void drawGhost(Graphics g) 
+    {
         g.drawImage(ghostPicIcon, ghostRow * CELL, ghostCol * CELL, maze);
     }
 
-    
-    public int getRow() {
+    public int getRow()
+    {
         return intel.getX();
     }
 
-   
     public int getCol() {
         return intel.getY();
     }
@@ -68,7 +68,6 @@ public class Ghost extends Thread {
         return mov;
     }
 
-    
     /*
      * Run method
      */
@@ -96,12 +95,14 @@ public class Ghost extends Thread {
             mov.setX2(ghostRow);
             mov.setY2(ghostCol);
             
-            
             maze.repaint();
 
-            try {
+            try 
+            {
                 Thread.sleep(intel.getSleep());
-            } catch (InterruptedException e) {
+            } 
+            catch (InterruptedException e) 
+            {
                 System.err.println(e);
             }
         }
@@ -109,17 +110,20 @@ public class Ghost extends Thread {
     
     public void changeIntel()
     {
-        if(mortal)
+        if(!dead)
         {
-            intel = smart;
-            mortal = false;
-            ghostPicIcon = Toolkit.getDefaultToolkit().getImage(IMAGE_SOURCE + ghostGraphic);
-        }
-        else
-        {
-            intel = stupid;
-            mortal = true;
-            ghostPicIcon = Toolkit.getDefaultToolkit().getImage(IMAGE_SOURCE + "ghost32.png");
+            if(mortal)
+            {
+                intel = smart;
+                mortal = false;
+                ghostPicIcon = Toolkit.getDefaultToolkit().getImage(IMAGE_SOURCE + ghostGraphic);
+            }
+            else
+            {
+                intel = stupid;
+                mortal = true;
+                ghostPicIcon = Toolkit.getDefaultToolkit().getImage(IMAGE_SOURCE + "ghost32.png");
+            }
         }
     }
     
@@ -127,13 +131,16 @@ public class Ghost extends Thread {
     {
         intel = new IntelParado(maze.logica,x,y,codGhost);
         ghostPicIcon=null;
+        dead=true;
     }
     public void matarFantasma(int codGhost)
     {
         intel = new IntelParado(maze.logica,codGhost);
         ghostPicIcon=null;
+        dead=true;
     }
-    protected void endgame() {
+    protected void endgame() 
+    {
         this.isRunning = false;
     }
 }

@@ -5,6 +5,7 @@
  */
 
 package pacman;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -34,7 +35,7 @@ public final class Maze extends JPanel {
     
     final static int CELL                = 20;
     private int      lives               = 1;
-    private final String   map                 = "src/pacman/levels/level2.txt/";
+    private final String   map           = "src/pacman/levels/level2.txt/";
     private final int      score               = 0;
     private final Ghost    blinky;
     private Cell[][] cells;
@@ -46,11 +47,8 @@ public final class Maze extends JPanel {
     private int      tileWidth;
     public boolean mortal;
     public boolean ganhou;
- 
-   
-  
-
     private Sounds sound;
+    
     public Maze() throws UnsupportedAudioFileException, LineUnavailableException, IOException 
 
     {
@@ -245,9 +243,6 @@ public final class Maze extends JPanel {
         
     }
 
-
-   
-     
 
     public boolean checkCollision() 
     {
