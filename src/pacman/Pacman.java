@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package pacman;
 
 
@@ -172,9 +166,6 @@ public class Pacman extends Thread {
         this.sleep=sleep;
     }
     
-    /*
-     * Run method
-     */
     @Override
     public void run() {
         
@@ -244,12 +235,6 @@ public class Pacman extends Thread {
         }
     }
 
-//  TODO - implement audio
-
-    /**
-     * Check if next move will be pellet Detect Collision and "eat pellet"
-     *
-     */
     public void eatPellet(int column, int row) throws InterruptedException 
     {
   

@@ -211,10 +211,7 @@ public final class Maze extends JPanel {
             Image i = kit.getImage("src/img/large/YouWin.PNG");
             g.drawImage(i, 40, 40, 520, 540,this);
             loseLife();
-        }
-       
-        
-        
+        }        
     }
 
     public Cell[][] getCells() {
