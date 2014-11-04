@@ -15,9 +15,9 @@ import java.util.regex.Pattern;
  *
  * @author cristopher
  */
-public class Logica {
-    
-    
+public class Logica 
+{
+        
     public Logica()
     {
         Query q1 = new Query("consult", new Atom("src/prolog/level2.pl"));
@@ -364,6 +364,28 @@ public class Logica {
                 return q2.hasSolution();
             case 3:
                 q2 = new Query("matarPinky");
+                return q2.hasSolution();
+            default:
+                    return false;
+        }
+    }
+    
+    public boolean criarFantasma(int n)
+    {
+        Query q2;
+        
+        switch(n){
+            case 0:
+                q2 = new Query("criarBlinky");
+                return q2.hasSolution();
+            case 1:
+                q2 = new Query("criarClyde");
+                return q2.hasSolution();
+            case 2:
+                q2 = new Query("criarInky");
+                return q2.hasSolution();
+            case 3:
+                q2 = new Query("criarPinky");
                 return q2.hasSolution();
             default:
                     return false;

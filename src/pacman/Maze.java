@@ -17,7 +17,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Queue;
 import java.util.Scanner;
+import java.util.concurrent.ArrayBlockingQueue;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JPanel;
@@ -34,6 +36,7 @@ public final class Maze extends JPanel {
     Logica logica = new Logica();
     
     final static int CELL                = 20;
+    final int intervaloCriacao           = 50;
     private int      lives               = 1;
     private final String   map           = "src/pacman/levels/level2.txt/";
     private final int      score               = 0;
@@ -48,6 +51,8 @@ public final class Maze extends JPanel {
     public boolean mortal;
     public boolean ganhou;
     private Sounds sound;
+    private Queue<Ghost> deadList  = new ArrayBlockingQueue<Ghost>(4);
+    private int contador=0;
     
     public Maze() throws UnsupportedAudioFileException, LineUnavailableException, IOException 
 
@@ -57,17 +62,21 @@ public final class Maze extends JPanel {
         createCellArray(map);
         setPreferredSize(new Dimension(CELL * tileWidth, CELL * tileHeight));
         pacman = new Pacman(this, 3,logica);
-        inky   = new Ghost(this, "inky.png",new IntelForte(logica,2,130),new IntelFraca2(logica,2));
-        blinky = new Ghost( this, "blinky.png",new IntelForte(logica,0,130), new IntelFraca2(logica,0));
-        pinky  = new Ghost( this, "pinky.png",new IntelFraca(logica,3,130),new IntelFraca2(logica,3));
-        clyde  = new Ghost( this, "clyde.png",new IntelFraca(logica,1,130),new IntelFraca2(logica,1));
+        inky   = new Ghost(2,this, "inky.png",new IntelForte(logica,2,130),new IntelFraca2(logica,2));
+        blinky = new Ghost(0, this, "blinky.png",new IntelForte(logica,0,130), new IntelFraca2(logica,0));
+        pinky  = new Ghost(3, this, "pinky.png",new IntelFraca(logica,3,130),new IntelFraca2(logica,3));
+        clyde  = new Ghost(1, this, "clyde.png",new IntelFraca(logica,1,130),new IntelFraca2(logica,1));
 
         // Start ghosts first
-        
-//        inky.changeIntel();
-//        blinky.changeIntel();
-//        pinky.changeIntel();
-//        clyde.changeIntel();
+                
+        clyde.matarFantasma();
+        inky.matarFantasma();
+       // pinky.matarFantasma();
+        blinky.matarFantasma();
+        deadList.add(clyde);
+        deadList.add(inky);
+        //deadList.add(pinky);
+        deadList.add(blinky);
         
         inky.start();
         blinky.start();
@@ -114,6 +123,7 @@ public final class Maze extends JPanel {
        
         //checkCollision();
         repaint();
+      
     }
 
     /**
@@ -178,6 +188,19 @@ public final class Maze extends JPanel {
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, tileWidth * CELL, tileHeight * CELL);
 
+        if(contador < intervaloCriacao)
+            contador++;
+        else
+        {
+            if(!deadList.isEmpty() && !mortal)
+            {
+                deadList.element().recriarFantasma();
+                deadList.remove();
+            }
+            contador = 0;
+        }
+        System.out.println(contador);
+        
         ganhou = true;
         // Outer loop loops through each row in the array
         for (int row = 0; row < tileHeight; row++) {
@@ -249,18 +272,27 @@ public final class Maze extends JPanel {
         
         if(mortal && logica.colisao())
         {
-          /*blinky.matarFantasma(1,0,0);
-            inky.matarFantasma(2,0,2);
-            pinky.matarFantasma(3,0,3);
-            clyde.matarFantasma(4,0,1);*/
+          
             if(logica.colisao1())
-              blinky.matarFantasma(0);
+            {
+              blinky.matarFantasma();
+              deadList.add(blinky);
+            }
             if(logica.colisao2())
-              inky.matarFantasma(2);
+            {
+              inky.matarFantasma();
+              deadList.add(inky);
+            }
             if(logica.colisao3())
-              clyde.matarFantasma(1);
+            {
+              clyde.matarFantasma();
+              deadList.add(clyde);
+            }
             if(logica.colisao4())
-              pinky.matarFantasma(3);
+            {
+              pinky.matarFantasma();
+              deadList.add(pinky);
+            }
             return true;
         }
         if(!mortal && (logica.colisao() || verificaTroca(blinky.getMov(),pacman.getMov()) || verificaTroca(pinky.getMov(),pacman.getMov())
@@ -276,8 +308,6 @@ public final class Maze extends JPanel {
 
     public void loseLife() {
         lives--;
-
-   
 
         // TODO - Need to integrate an actual death.
 

@@ -33,6 +33,7 @@ public class Pacman extends Thread {
     int current = 0;
     // direcao inicial invalida
     private char   direction     = 'x';
+
     boolean        isRunning     = true;
     int            score         = 0;   
     //Arrays de imagens
@@ -53,6 +54,7 @@ public class Pacman extends Thread {
     Thread         thread;
     Logica logica;
     private int timer=0;
+    private int intervaloMortal = 50;
     
     
     public Pacman( Maze startMaze, int lives,Logica inte) {
@@ -175,9 +177,9 @@ public class Pacman extends Thread {
         
         while (isRunning) 
        {
-           if(maze.mortal && timer <30)   
+           if(maze.mortal && timer <intervaloMortal)   
                  timer++;
-           if(maze.mortal && timer >=30)
+           if(maze.mortal && timer >=intervaloMortal)
            {
                timer=0;
                maze.changeMortal();
@@ -189,7 +191,7 @@ public class Pacman extends Thread {
                 pastRow = logica.pacmanX();
                 pastCol = logica.pacmanY();
                 
-                
+                                
                 if (direction == 'u')
                 {
                     logica.up();
@@ -255,8 +257,11 @@ public class Pacman extends Thread {
         if (cells[column][row].getType() == 'p') {
            
             score                   += 50;
-            cells[column][row].type = 'o';      
-            maze.changeMortal();
+            cells[column][row].type = 'o';
+            if(!maze.mortal)
+                maze.changeMortal();
+            else
+                timer=0;
         }
     }
     

@@ -28,10 +28,11 @@ public class IntelFraca2 implements Inteligencia {
     {
         this.logica=logica;
         this.codGhost = codGhost;
+      //  logica.criarFantasma(codGhost);
         x=logica.FantasmaX(codGhost);
         y=logica.FantasmaY(codGhost);
         iter=0;
-        sleep = 200;
+        sleep = 100;
         pos= logica.getPath(x , y);
     }
 

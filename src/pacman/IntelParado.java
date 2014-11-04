@@ -47,7 +47,7 @@ public class IntelParado implements Inteligencia
 
     @Override
     public int getSleep() {
-       return 10000;
+       return 100;
     }
     
 }

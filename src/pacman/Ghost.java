@@ -31,12 +31,15 @@ public class Ghost extends Thread
     private boolean             mortal;
     private boolean             dead;
     private int                 sleep;
+    private int codGhost;
 
-    public Ghost(Maze startMaze, String ghostGraphic ,Inteligencia smart,Inteligencia stupid) 
+    public Ghost(int ghostCod ,Maze startMaze, String ghostGraphic ,Inteligencia smart,Inteligencia stupid) 
     {
         this.smart = smart;
         this.stupid = stupid;
         this.intel = smart;
+       
+        this.codGhost=ghostCod;
         mortal = false;
         dead=false;
         mov = new Movimento();
@@ -127,18 +130,30 @@ public class Ghost extends Thread
         }
     }
     
-    public void matarFantasma(int x,int y,int codGhost)
-    {
-        intel = new IntelParado(maze.logica,x,y,codGhost);
-        ghostPicIcon=null;
-        dead=true;
-    }
-    public void matarFantasma(int codGhost)
+//    public void matarFantasma(int x,int y)
+//    {
+//        intel = new IntelParado(maze.logica,x,y,codGhost);
+//        ghostPicIcon=null;
+//        dead=true;
+//    }
+    
+    public void matarFantasma()
     {
         intel = new IntelParado(maze.logica,codGhost);
         ghostPicIcon=null;
         dead=true;
     }
+    
+    public void recriarFantasma()
+    {
+        maze.logica.criarFantasma(codGhost);
+        dead=false;
+        mortal=false;
+        intel = smart;
+        ghostPicIcon = Toolkit.getDefaultToolkit().getImage(IMAGE_SOURCE + ghostGraphic);
+    }
+    
+    
     protected void endgame() 
     {
         this.isRunning = false;

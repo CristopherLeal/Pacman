@@ -376,10 +376,10 @@ travel(pos(X1,Y1),pos(X2,Y2),Visited,Path) :- mov(X1,Y1,X,Y), pos(X,Y) \== pos(X
 %% movimento dos fantasmas
 
 % quando o jogo comeca ou fantasma morre
-blinky(19,16).
-clyde(19,19).
-inky(16,16).
-pinky(16,19).
+%%blinky(19,16).
+%%clyde(19,19).
+%%inky(16,16).
+%%pinky(16,19).
 
 % executa os movimentos de cada fantasma
 
@@ -425,3 +425,13 @@ matarBlinky:-(retract(blinky(X1,Y1)),assert(blinky(0,0))).
 matarInky:-(retract(inky(X1,Y1)),assert(inky(0,0))).
 matarPinky:-(retract(pinky(X1,Y1)),assert(pinky(0,0))).
 matarClyde:-(retract(clyde(X1,Y1)),assert(clyde(0,0))).
+
+blinky(0,0).
+inky(0,0).
+pinky(0,0).
+clyde(0,0).
+
+criarBlinky:-(retract(blinky(_,_)),assert(blinky(12,14))).
+criarInky:-(retract(inky(_,_)),assert(inky(12,14))).
+criarPinky:-(retract(pinky(_,_)),assert(pinky(12,14))).
+criarClyde:-(retract(clyde(_,_)),assert(clyde(12,14))).

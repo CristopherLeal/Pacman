@@ -29,6 +29,7 @@ public class IntelForte implements Inteligencia {
     {
         this.logica=logica;
         this.codGhost = codGhost;
+        logica.criarFantasma(codGhost);
         x=logica.FantasmaX(codGhost);
         y=logica.FantasmaY(codGhost);      
         iter=0;
