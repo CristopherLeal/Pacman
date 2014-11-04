@@ -55,7 +55,6 @@ public class Sounds {
     }
     
     public void nomMon(){
-        /* If it's already playing, don't start it playing again!*/
         if(!stopped)
             return;
         stopped = false;
@@ -71,7 +70,6 @@ public class Sounds {
         nomMon.setFramePosition(0);
     }
     
-     /* Play new game sound */
     public void newGame(){
         openingsound.stop();
         openingsound.setFramePosition(0);
@@ -79,7 +77,6 @@ public class Sounds {
     }
     
     
-    /* Play pacman death sound */
     public void death(){
         pacmandies.stop();
         pacmandies.setFramePosition(0);

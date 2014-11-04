@@ -16,7 +16,6 @@ import prolog.Logica;
 
 public class Pacman extends Thread {
     
-    //path das imagens  
     private static final String IMAGE_SOURCE     = "src/pacman/img/";
     static String[]             pacmanSequencesL = {IMAGE_SOURCE + "pacman.gif", IMAGE_SOURCE + "pacman-l 1.gif",
             IMAGE_SOURCE + "pacman-l 2.gif", IMAGE_SOURCE + "pacman-l 3.gif",IMAGE_SOURCE + "pacman-l 4.gif",

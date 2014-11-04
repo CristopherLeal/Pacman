@@ -1,19 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pacman;
 
-import java.util.ArrayList;
 import java.util.List;
 import prolog.Logica;
 import prolog.Position;
 
-/**
- *
- * @author cristopher
- */
 public class IntelForte implements Inteligencia {
 
     private int x;
@@ -23,7 +13,6 @@ public class IntelForte implements Inteligencia {
     private final int sleep;
     private final Logica logica;
     List<Position> pos;
-    //importante que todos tenham a mesma instancia da logica
 
     public IntelForte(Logica logica,int codGhost, int sleep)
     {

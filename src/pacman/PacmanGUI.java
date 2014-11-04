@@ -2,7 +2,6 @@
 
 package pacman;
 
-//~--- JDK imports ------------------------------------------------------------
 
 import java.awt.BorderLayout;
 import java.io.IOException;
@@ -14,8 +13,6 @@ class PacmanGUI extends JFrame
     private static Maze       gameMaze;
 
     public void startGUI() throws IOException {
-
-        // Control Button Declarations
      
         JFrame gameBoard = new JFrame("Pacman");
         gameBoard.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

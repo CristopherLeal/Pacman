@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package pacman;
 
 import java.awt.Graphics;
@@ -71,14 +65,10 @@ public class Ghost extends Thread
         return mov;
     }
 
-    /*
-     * Run method
-     */
     @Override
     public void run() {
         while (isRunning) {
 
-            // Edible processing
             if (this.deadly == false) {
                 this.edibleLifeRemaining--;
 
@@ -129,14 +119,7 @@ public class Ghost extends Thread
             }
         }
     }
-    
-//    public void matarFantasma(int x,int y)
-//    {
-//        intel = new IntelParado(maze.logica,x,y,codGhost);
-//        ghostPicIcon=null;
-//        dead=true;
-//    }
-    
+
     public void matarFantasma()
     {
         intel = new IntelParado(maze.logica,codGhost);

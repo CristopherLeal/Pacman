@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package pacman;
 
 import java.awt.Color;
@@ -24,11 +18,6 @@ import javax.swing.JPanel;
 
 import prolog.Logica;
 
-/**
- * Represents the maze that appears on screen. Creates the maze data using a 2D
- * array of Cell objects, and renders the maze on screen.
- *
- */
 public final class Maze extends JPanel {
     
     Logica logica = new Logica();
@@ -53,11 +42,7 @@ public final class Maze extends JPanel {
     private boolean turbo=false;
     private int sleepTurbo=30;
     private int sleepNormal=130;
-    
-    /**
-     *
-     * @throws IOException
-     */
+
     public Maze() throws IOException 
 
     {
@@ -131,21 +116,15 @@ public final class Maze extends JPanel {
             }
         });
        
-        //checkCollision();
         repaint();
       
     }
 
-    /**
-     * Reads from the map file and create the two dimensional array
-     */
     private void createCellArray(String mapFile) {
 
-        // Scanner object to read from map file
         Scanner           fileReader;
-        ArrayList<String> lineList = new ArrayList<String>();
+        ArrayList<String> lineList = new ArrayList<>();
 
-        // Attempt to load the maze map file
         try {
             fileReader = new Scanner(new File(mapFile));
 
@@ -154,10 +133,7 @@ public final class Maze extends JPanel {
 
                 try {
                     line = fileReader.nextLine();
-                } catch (Exception eof) {
-
-                    // throw new A5FatalException("Could not read resource");
-                }
+                } catch (Exception eof) {}
 
                 if (line == null) {
                     break;
@@ -169,7 +145,6 @@ public final class Maze extends JPanel {
             tileHeight = lineList.size();
             tileWidth  = lineList.get(0).length();
 
-            // Create the cells
             cells = new Cell[tileHeight][tileWidth];
 
             for (int row = 0; row < tileHeight; row++) {
@@ -186,12 +161,6 @@ public final class Maze extends JPanel {
         }
     }
 
-    /**
-     * Generic paint method Iterates through each cell/tile in the 2D array,
-     * drawing each in the appropriate location on screen
-     *
-     * @param g Graphics object
-     */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -212,10 +181,8 @@ public final class Maze extends JPanel {
         System.out.println(contador);
         
         ganhou = true;
-        // Outer loop loops through each row in the array
         for (int row = 0; row < tileHeight; row++) {
 
-            // Inner loop loops through each column in the array
             for (int column = 0; column < tileWidth; column++) {
                 cells[row][column].drawBackground(g);
                 if(cells[row][column].getType()=='d' || cells[row][column].getType()=='p')
@@ -226,7 +193,6 @@ public final class Maze extends JPanel {
             }
         }
 
-        // Pacman.drawScore(g);
        if( checkCollision() && !mortal)
        {
             Toolkit kit = Toolkit.getDefaultToolkit();
@@ -265,10 +231,7 @@ public final class Maze extends JPanel {
 
     public void changeMortal() 
     {
-        if(mortal)
-             mortal=false;
-        else
-            mortal = true;
+        mortal = !mortal;
         inky.changeIntel();
         blinky.changeIntel();
         pinky.changeIntel();
@@ -318,8 +281,6 @@ public final class Maze extends JPanel {
 
     public void loseLife() {
         lives--;
-
-        // TODO - Need to integrate an actual death.
 
         if (lives <= 0) {
             inky.endgame();

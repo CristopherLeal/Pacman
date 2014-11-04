@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pacman;
 
 import java.util.List;
 import prolog.Logica;
 import prolog.Position;
 
-/**
- *
- * @author cristopher
- */
 public class IntelFraca2 implements Inteligencia {
 
     private int x;
@@ -22,12 +13,10 @@ public class IntelFraca2 implements Inteligencia {
     private final int sleep;
     Logica logica;
     List<Position> pos;
-    //importante que todos tenham a mesma instancia da logica
     IntelFraca2(Logica logica, int codGhost)
     {
         this.logica=logica;
         this.codGhost = codGhost;
-      //  logica.criarFantasma(codGhost);
         x=logica.FantasmaX(codGhost);
         y=logica.FantasmaY(codGhost);
         iter=0;

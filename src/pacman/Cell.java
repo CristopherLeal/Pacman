@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package pacman;
 
 import java.awt.BasicStroke;
@@ -16,10 +10,6 @@ import java.awt.Shape;
 import java.awt.Toolkit;
 import java.awt.geom.Ellipse2D;
 
-/**
- *
- * @author lucasmachado
- */
 public class Cell {
     
     final int CELL = 20;
@@ -50,9 +40,6 @@ public class Cell {
                 break;
             
             case 'e':
-//                g.setColor(Color.white);
-//                g.fillRect(x * CELL, y * CELL + CELL / 2 - 1, CELL, ESP);
-            
             case 'v':
                 g.setColor(Color.BLUE);
                 g.fillRect(x * CELL + CELL / 2 - 3, y * CELL, ESP, CELL);
@@ -111,18 +98,11 @@ public class Cell {
              g.drawImage(i2, x*CELL-7, y*CELL-5,30,30,null);
 
             break;    
-
-//        case 'x' :    // empty non-navigable cell
-//        case 'g' :    // the Corral
         default :
             break;
         }
     }
     
-    /*
-     * Draw 3px rounded corner
-     *
-     */
     public void drawCorner(Graphics g, int xBase, int yBase) {
         Graphics2D g2      = (Graphics2D) g;
         Rectangle  oldClip = g.getClipBounds();
